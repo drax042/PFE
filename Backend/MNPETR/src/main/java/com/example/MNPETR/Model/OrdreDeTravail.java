@@ -12,4 +12,5 @@ public class OrdreDeTravail {
     private String Description_Panne;
     private String Type_Otz ;
     private int Date ;
+    
 }
