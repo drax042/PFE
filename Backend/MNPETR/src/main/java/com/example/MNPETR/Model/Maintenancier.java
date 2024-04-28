@@ -16,9 +16,9 @@ public class Maintenancier extends EmployesDeMaintenance {
     private String Niveau_intervention;
     private String Domaine_technique;
 
-    public Maintenancier(int Matricule, String Niveau_intervention, String Domaine_technique) {
-        super(Matricule);
-        this.Niveau_intervention = Niveau_intervention;
-        this.Domaine_technique = Domaine_technique;
+    public Maintenancier(int matricule, String niveau_intervention, String domaine_technique) {
+        super(matricule) ;
+        Niveau_intervention = niveau_intervention;
+        Domaine_technique = domaine_technique;
     }
 }
