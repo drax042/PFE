@@ -1,27 +1,21 @@
 package com.example.MNPETR.Model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
 @Builder
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
 
+@Table (name = "PosteTechnique")
 public class PosteTechnique {
-    public int getID_PT() {
-        return ID_PT;
-    }
 
-    public void setID_PT(int ID_PT) {
-        this.ID_PT = ID_PT;
-    }
-
-    int ID_PT ;
-
-    public PosteTechnique(int ID_PT) {
-        this.ID_PT = ID_PT;
-    }
+    @Id
+    @Column (name = "ID_PosteTechnique")
+    private  int ID_PosteTechnique ;
 }

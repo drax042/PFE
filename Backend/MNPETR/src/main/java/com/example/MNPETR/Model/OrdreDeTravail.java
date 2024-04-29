@@ -12,9 +12,9 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Table(name = "ordre_de_travail")
+@Data
+
+@Table(name = "OrdreDeTravail")
 public class OrdreDeTravail {
     @Id
     @Column(name = "ID_OT")

@@ -1,24 +1,22 @@
 package com.example.MNPETR.Model;
 
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-@Builder
-@Setter
+@Entity
 @Getter
-@NoArgsConstructor
-
+@Setter
 public class Structure {
-    public Structure(String nomStructure) {
-        NomStructure = nomStructure;
-    }
 
-    public String getNomStructure() {
-        return NomStructure;
-    }
+    @Id
+    @Column(name = "ID_Structure") // Assuming there's a primary key
+    private int idStructure; // Using camelCase for consistency
 
-    public void setNomStructure(String nomStructure) {
-        this.NomStructure = nomStructure;
-    }
-
-    String NomStructure ;
+    @Column(name = "Nom_Structure")
+    private String nomStructure; // Using camelCase for consistency
 }
+

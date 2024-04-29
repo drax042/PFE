@@ -1,10 +1,26 @@
 package com.example.MNPETR.Model;
 
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Table(name = "Magasinier")
 public class Magasinier {
-    private int ID_Magasinier;
-    private String Nom_Magasinier;
+
+    @Id
+    @Column(name = "ID_Magasinier")
+    private int idMagasinier;
+
+    @Column(name = "Nom_Magasinier")
+    private String nomMagasinier;
 
 }

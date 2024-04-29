@@ -1,24 +1,24 @@
 package com.example.MNPETR.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class Maintenancier extends EmployesDeMaintenance {
-    private String Niveau_intervention;
-    private String Domaine_technique;
+public class Maintenancier {
 
-    public Maintenancier(int matricule, String niveau_intervention, String domaine_technique) {
-        super(matricule) ;
-        Niveau_intervention = niveau_intervention;
-        Domaine_technique = domaine_technique;
-    }
+    @Id
+    @Column(name = "ID_Maintenancier") // Assuming there's a primary key
+    private int ID_Maintenancier; // Using camelCase for consistency
+
+    @Column(name = "Niveau_intervention")
+    private String niveauIntervention; // Using camelCase for consistency
+
+    @Column(name = "Domaine_technique")
+    private String domaineTechnique; // Using camelCase for consistency
 }

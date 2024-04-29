@@ -1,11 +1,29 @@
 package com.example.MNPETR.Model;
 
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-@Builder
+
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Table(name = "Equipement")
 public class Equipement {
-    private int ID_Equipement;
-    private String Nom_Equipement;
-    private String Etat_Equipement;
 
+    @Id
+    @Column(name = "ID_Equipement")
+    private int idEquipement; // Using camelCase for consistency
+
+    @Column(name = "Nom_Equipement")
+    private String nomEquipement; // Using camelCase for consistency
+
+    @Column(name = "Etat_Equipement")
+    private String etatEquipement; // Using camelCase for consistency
 }
+
+

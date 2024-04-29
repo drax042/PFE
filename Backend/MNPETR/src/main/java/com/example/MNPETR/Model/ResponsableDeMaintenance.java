@@ -1,16 +1,21 @@
 package com.example.MNPETR.Model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
-@Getter
-@Builder
+
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@Data
 
-public class ResponsableDeMaintenance extends EmployesDeMaintenance{
+@Table (name = "ResponsableDeMaintenance")
+public class ResponsableDeMaintenance {
 
-    public ResponsableDeMaintenance(int matricule) {
-  super(matricule);
-    }
+    @Id
+    @Column (name = "ID_ResponsableDeMaintenance ")
+    private int ID_ResponsableDeMaintenance ;
 }
