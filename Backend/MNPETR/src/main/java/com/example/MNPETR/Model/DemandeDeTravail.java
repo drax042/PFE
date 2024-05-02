@@ -16,15 +16,17 @@ import java.util.Date;
 @Setter
 @Getter
 
-@Table (name = "DemandeDeTravail")
+@Table (name = "demande_de_travail")
 public class DemandeDeTravail {
 
     @Id
-    @Column (name = "ID_DT")
+    @Column (name = "id_dt")
     private int ID_DT;
-    @Column (name = "Date_Heure")
+    @Column (name = "date_heure")
     private Date Date_Heure;
-    @Column (name = "DescriptionPanne")
+    @Column (name = "description _panne")
     private String Description_Panne;
+
+
 
 }

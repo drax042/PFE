@@ -1,10 +1,9 @@
 package com.example.MNPETR.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 
 @Data
@@ -12,18 +11,27 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name = "Equipement")
+@Table(name = "equipement")
 public class Equipement {
 
     @Id
-    @Column(name = "ID_Equipement")
-    private int idEquipement; // Using camelCase for consistency
+    @Column(name = "id_equipement")
+    private int ID_Equipement; // Using camelCase for consistency
 
-    @Column(name = "Nom_Equipement")
-    private String nomEquipement; // Using camelCase for consistency
+    @Column(name = "nom_equipement")
+    private String NomEquipement; // Using camelCase for consistency
 
-    @Column(name = "Etat_Equipement")
-    private String etatEquipement; // Using camelCase for consistency
+    @Column(name = "etat_equipement")
+    private String Etat_Equipement; // Using camelCase for consistency
+
+    @ManyToOne
+    @JoinColumn (name = "poste_technique")
+    private PosteTechnique poste_technique ;
+
+    @ManyToMany (mappedBy = "equipements")
+    private Set<Piece> pieces ;
+
+
 }
 
 

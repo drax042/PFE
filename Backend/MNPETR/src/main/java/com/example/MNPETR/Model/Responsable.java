@@ -12,10 +12,13 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 
-@Table (name = "ResponsableDeMaintenance")
-public class ResponsableDeMaintenance {
+@Table (name = "responsable")
+public class Responsable {
 
     @Id
-    @Column (name = "ID_ResponsableDeMaintenance ")
-    private int ID_ResponsableDeMaintenance ;
+    @Column (name = "id_reponsable ")
+    private int ID_Responsable ;
+
+    @Column (name = "secteur")
+    private int Secteur ;
 }

@@ -1,21 +1,26 @@
 package com.example.MNPETR.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
-@Builder
+import java.util.Set;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 
-@Table (name = "PosteTechnique")
+
+@Table (name = "poste_technique")
 public class PosteTechnique {
 
     @Id
-    @Column (name = "ID_PosteTechnique")
-    private  int ID_PosteTechnique ;
+    @Column (name = "id_poste_Technique")
+    private  int ID_Poste_Technique ;
+    @Column (name ="secteur")
+    private int Secteur ;
+
+    @OneToMany (mappedBy = "poste_technique")
+    private Set<Equipement> equipements ;
 }

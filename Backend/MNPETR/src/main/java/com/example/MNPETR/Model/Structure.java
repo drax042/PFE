@@ -1,22 +1,26 @@
 package com.example.MNPETR.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+
+import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Table (name = "structure")
 public class Structure {
 
     @Id
-    @Column(name = "ID_Structure") // Assuming there's a primary key
-    private int idStructure; // Using camelCase for consistency
+    @Column(name = "nom_structure")
+    private String NomStructure; // Using camelCase for consistency
 
-    @Column(name = "Nom_Structure")
-    private String nomStructure; // Using camelCase for consistency
+    @OneToMany(mappedBy = "structure") // mappedBy points to the attribute in Maintenancier
+    private Set<Maintenancier> maintenanciers; // Set to handle multiple maintenanciers
+
+    @OneToMany (mappedBy = "structure")
+    private Set<Employe> employes ;
 }
-
