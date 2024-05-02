@@ -1,10 +1,7 @@
 package com.example.MNPETR.Model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -13,18 +10,26 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Setter
-@Getter
 
-@Table (name = "DemandeDeTravail")
+@Table (name = "demande_de_travail")
 public class DemandeDeTravail {
 
     @Id
-    @Column (name = "ID_DT")
+    @Column (name = "id_dt")
     private int ID_DT;
-    @Column (name = "Date_Heure")
-    private Date Date_Heure;
-    @Column (name = "DescriptionPanne")
+
+    @Column (name = "date_dt")
+    private Date Date_DT;
+
+    @Column (name = "description_panne")
     private String Description_Panne;
+
+    @ManyToOne
+    @JoinColumn(name = "id_responsable_maintenance")
+    private ResponsableMaintenance responsableMaintenance;
+
+    @ManyToOne
+    @JoinColumn(name = "id_employe")
+    private Employe employe;
 
 }
