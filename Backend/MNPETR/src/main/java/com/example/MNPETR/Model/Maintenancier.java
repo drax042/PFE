@@ -40,6 +40,10 @@ public class Maintenancier {
     @JoinColumn(name = "id_responsable_maintenance")
     private ResponsableMaintenance responsableMaintenance;
 
+    @ManyToOne
+    @JoinColumn(name = "nom_structure")
+    private Structure structure;
+
 
     @ManyToMany
     @JoinTable (name = "maintenancier_equipement",

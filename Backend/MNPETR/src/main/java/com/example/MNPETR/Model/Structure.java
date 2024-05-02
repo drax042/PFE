@@ -23,4 +23,6 @@ public class Structure {
 
     @OneToMany (mappedBy = "structure")
     private Set<Employe> employes ;
+
+
 }
