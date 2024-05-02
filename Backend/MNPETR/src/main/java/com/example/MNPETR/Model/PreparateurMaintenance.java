@@ -17,12 +17,13 @@ public class PreparateurMaintenance {
     @Column(name ="nom_preparateur_maintenance")
     private String Nom_Preparateur_Maintenance;
 
-    @Column(name ="prenom_preparateur_maintenance")
-    private String Prenom_Preparateur_Maintenance;
+    @Column (name = "prenom_preparateur_maintenance")
+    private String Prenom_Preparateur_Maintenance ;
 
-    @Column(name = "email_preparateur_maintenance")
-    private String Email_Preparateur_Maintenance;
+    @Column (name = "email_preparateur_maintenance")
+    private String Email_Preparateur_Maintenance ;
 
-    @OneToMany(mappedBy = "preparateur_maintenance")
-    private Set<Equipement> equipements;
+
+    @OneToMany (mappedBy ="preparateur_maintenance")
+    private Set<Equipement> equipements ;
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -29,12 +30,19 @@ public class OrdreDeTravail {
     private String Description_Panne;
 
     @Column(name = "type_otz")
-    private String Type_Otz;
+    private String type_Otz;
+
+    @ManyToMany(mappedBy = "ordresDeTravail") // mappedBy fait référence à l'attribut dans Maintenancier
+    private Set<Maintenancier> maintenanciers; // Ensemble pour gérer plusieurs Maintenancier
 
 
     @ManyToOne
     @JoinColumn(name = "id_responsable_maintenance")
     private ResponsableMaintenance responsableMaintenance;
 
+
+    @ManyToOne
+    @JoinColumn (name = "id_magasinier")
+    private Magasinier magasinier ;
 
 }

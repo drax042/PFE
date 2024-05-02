@@ -3,9 +3,7 @@ import './App.css';
 
 function App() {
   return (
-    <h1>
-      Je suis un header
-    </h1>
+      <img src="Sonatrach.svg.png" alt="Sonatrach.svg.png"/>
   );
 }
 

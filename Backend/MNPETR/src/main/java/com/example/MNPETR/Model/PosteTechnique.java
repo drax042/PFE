@@ -16,7 +16,7 @@ public class PosteTechnique {
 
     @Id
     @Column (name = "id_poste_technique")
-    private  int ID_PosteTechnique ;
+    private  int ID_Poste_Technique ;
 
     @Column(name = "nom_poste_technique")
     private String Nom_Poste_Technique;
