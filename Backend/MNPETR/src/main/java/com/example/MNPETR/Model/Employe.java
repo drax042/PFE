@@ -14,10 +14,19 @@ public class Employe {
     @Id
     @Column (name = "id_employe")
     private int ID_Employe;
+
     @Column (name = "nom_employe")
     private String Nom_Employe;
-    @Column (name = "poste")
-    private String Poste;
+
+    @Column (name = "prenom_employe")
+    private String Prenom_Employe ;
+
+    @Column (name = "email_employe")
+    private String Email_Employe ;
+
+    @Column (name = "poste_employe")
+    private String Poste_Employe;
+
 
     @ManyToOne
     @JoinColumn(name = "nom_structure")

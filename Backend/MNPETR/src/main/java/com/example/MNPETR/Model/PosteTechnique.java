@@ -18,6 +18,10 @@ public class PosteTechnique {
     @Id
     @Column (name = "id_poste_Technique")
     private  int ID_Poste_Technique ;
+
+    @Column (name = "nom_poste_technique")
+    private String Nom_Poste_Technique ;
+
     @Column (name ="secteur")
     private int Secteur ;
 

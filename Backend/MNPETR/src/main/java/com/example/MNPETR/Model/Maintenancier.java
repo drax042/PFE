@@ -19,6 +19,12 @@ public class Maintenancier {
     @Column(name = "nom_maintenancier")
     private int Nom_Maintenancier;
 
+    @Column (name = "prenom_employe")
+    private String Prenom_Maintenancier ;
+
+    @Column (name = "email_maintenancier")
+    private String Email_Maintenanicer ;
+
     @Column(name = "niveau_intervention")
     private String Niveau_Intervention; // Using camelCase for consistency
 
@@ -27,13 +33,19 @@ public class Maintenancier {
 
     @ManyToMany
     @JoinTable(name = "ot_maintenancier", // Join table name
-            joinColumns = @JoinColumn(name = "id_OT"), // Foreign key for OrdreDeTravail
+            joinColumns = @JoinColumn(name = "id_ot"), // Foreign key for OrdreDeTravail
             inverseJoinColumns = @JoinColumn(name = "id_maintenancier")) // Foreign key for Maintenancier
     private Set<OrdreDeTravail> ordresDeTravail; // Set to handle multiple ordresDeTravail
 
-    // Optional annotation for a one-to-one relationship with a nullable foreign key
     @ManyToOne
     private Structure structure;
 
-    // Getters and setters for ordresDeTravail and structure (optional with @Getter @Setter)
+    @ManyToMany
+    @JoinTable (name = "maintenancier_equipement",
+    joinColumns  = @JoinColumn (name = "id_maintenancier"),
+    inverseJoinColumns = @JoinColumn (name = "id_equipement"))
+    private Set<Equipement> equipements ;
+
+
+
 }

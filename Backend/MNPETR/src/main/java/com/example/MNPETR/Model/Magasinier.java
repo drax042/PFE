@@ -22,8 +22,11 @@ public class Magasinier {
     @Column(name = "nom_magasinier")
     private String Nom_Magasinier;
 
-    @Column (name = "num_telephone")
-    private int NumTelephone ;
+    @Column (name = "prenom_magasinier")
+    private String Prenom_Magasinier ;
+
+    @Column (name = "email_magasinier")
+    private String Email_Magasinier ;
 
     @OneToMany (mappedBy = "magasinier")
     private Set<OrdreDeTravail> ordresDeTravail ;

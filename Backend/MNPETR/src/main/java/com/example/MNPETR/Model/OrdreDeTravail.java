@@ -13,8 +13,8 @@ import java.util.Set;
 @Table(name = "ordre_de_travail")
 public class OrdreDeTravail {
     @Id
-    @Column(name = "id_ordre_de_travail")
-    private int ID_Ordre_De_Travail;
+    @Column(name = "id_ot")
+    private int ID_OT;
 
     @Column(name = "tot_horaire")
     private int Tot_Horaire;
@@ -22,15 +22,14 @@ public class OrdreDeTravail {
     @Column(name = "duree")
     private int Duree;
 
+    @Column(name = "date_ot")
+    private Date date_OT ;
+
     @Column(name = "description_panne", length = 255)
     private String Description_Panne;
 
-    @Column(name = "type_tz", length = 255)
+    @Column(name = "type_otz")
     private String type_Otz;
-
-    @Column(name = "date_ot")
-    private Date Date_OT;
-
 
     @ManyToMany(mappedBy = "ordresDeTravail") // mappedBy fait référence à l'attribut dans Maintenancier
     private Set<Maintenancier> maintenanciers; // Ensemble pour gérer plusieurs Maintenancier

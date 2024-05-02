@@ -21,6 +21,11 @@ public class Equipement {
     @Column(name = "nom_equipement")
     private String NomEquipement; // Using camelCase for consistency
 
+
+    @Column(name = "description_equipement")
+    private String Description_Equipement ;
+
+
     @Column(name = "etat_equipement")
     private String Etat_Equipement; // Using camelCase for consistency
 
@@ -30,6 +35,13 @@ public class Equipement {
 
     @ManyToMany (mappedBy = "equipements")
     private Set<Piece> pieces ;
+
+    @ManyToOne
+    @JoinColumn(name = "id_preparateur_maintenance")
+    private PreparateurMaintenance preparateur_maintenance ;
+
+    @ManyToMany (mappedBy="equipements")
+    private Set<Maintenancier> maintenanciers ;
 
 
 }

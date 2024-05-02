@@ -22,8 +22,8 @@ public class DemandeDeTravail {
     @Id
     @Column (name = "id_dt")
     private int ID_DT;
-    @Column (name = "date_heure")
-    private Date Date_Heure;
+    @Column(name = "date_dt")
+    private Date date_DT ;
     @Column (name = "description _panne")
     private String Description_Panne;
 
