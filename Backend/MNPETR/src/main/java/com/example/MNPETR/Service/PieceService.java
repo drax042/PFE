@@ -2,10 +2,7 @@ package com.example.MNPETR.Service;
 
 import com.example.MNPETR.Model.Piece;
 import com.example.MNPETR.Repository.PieceRepo;
-import jakarta.persistence.Entity;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,20 +23,29 @@ public class PieceService implements IPieceService {
 
     @Override
     public Optional<Piece> getPieceById(Integer ID_Piece) {
-     return pieceRepo.findById(ID_Piece) ;
-
+        return pieceRepo.findById(ID_Piece) ;
     }
 
+    @Override
+    public List<Piece> getPieceByType(String Type_Piece) {
+        return pieceRepo.findByTypePiece(Type_Piece);
+    }
 
-@Override
+    @Override
+    public List<Piece> getPieceByName(String Nom_Piece) {
+        return pieceRepo.findByNamePiece(Nom_Piece);
+    }
+
+    @Override
     public  void savePiece(Piece piece){
-         pieceRepo.save(piece) ;
-
+        pieceRepo.save(piece) ;
     }
-@Override
+
+    @Override
     public void deletePiece(Piece piece) {
         pieceRepo.delete(piece);
     }
+
 
 @Override
     public List<Piece> findPieceByTypePiece(String Type_Piece){
@@ -53,3 +59,4 @@ public class PieceService implements IPieceService {
 
 
 }
+

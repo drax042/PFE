@@ -18,6 +18,9 @@ public class Piece {
     @Column (name ="id_piece")
     private int ID_Piece ;
 
+    @Column (name = "type_piece")
+    private String Type_Piece ;
+
     @Column (name = "nom_piece")
     private String Nom_Piece ;
 

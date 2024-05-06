@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IComposantService {
-    List<Composant> getAllComposant();
+    List<Composant> getAllComposants();
 
-    Optional<Composant> getComposantById(int ID_Composant);
+    Optional<Composant> getComposantById(Integer ID_Composant);
 
-    Composant SaveComposant(Composant composant);
+    List<Composant> getComposantByNomComposant(String Nom_Composant);
+
+    Composant saveComposant(Composant composant);
 
     void deleteComposant(Composant composant);
 }

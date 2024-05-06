@@ -23,9 +23,7 @@ public class Composant {
 
     @ManyToMany
     @JoinTable(name = "composant_piece",
-            joinColumns = @JoinColumn(name = "id_composant"),
-            inverseJoinColumns = @JoinColumn(name = "id_piece"))
+    joinColumns = @JoinColumn(name = "id_composant"),
+    inverseJoinColumns = @JoinColumn(name = "id_piece"))
     private Set<Piece> pieces;
-
-
 }

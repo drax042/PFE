@@ -43,4 +43,8 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/adel
