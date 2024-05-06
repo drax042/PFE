@@ -30,7 +30,7 @@ public class OrdreDeTravail {
     private String Description_Panne;
 
     @Column(name = "type_otz")
-    private String type_Otz;
+    private String Type_Otz;
 
     @ManyToMany(mappedBy = "ordresDeTravail") // mappedBy fait référence à l'attribut dans Maintenancier
     private Set<Maintenancier> maintenanciers; // Ensemble pour gérer plusieurs Maintenancier

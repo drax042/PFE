@@ -3,6 +3,8 @@ package com.example.MNPETR.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @Entity
 
@@ -19,7 +21,9 @@ public class Composant {
     @Column(name = "description_composant")
     private String Description_Composant;
 
-    @ManyToOne
-    @JoinColumn(name = "id_piece")
-    private Piece pieces;
+    @ManyToMany
+    @JoinTable(name = "composant_piece",
+    joinColumns = @JoinColumn(name = "id_composant"),
+    inverseJoinColumns = @JoinColumn(name = "id_piece"))
+    private Set<Piece> pieces;
 }

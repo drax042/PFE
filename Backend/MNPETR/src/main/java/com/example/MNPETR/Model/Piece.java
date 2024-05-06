@@ -18,6 +18,9 @@ public class Piece {
     @Column (name ="id_piece")
     private int ID_Piece ;
 
+    @Column (name = "type_piece")
+    private String Type_Piece ;
+
     @Column (name = "nom_piece")
     private String Nom_Piece ;
 
@@ -37,6 +40,6 @@ public class Piece {
     inverseJoinColumns = @JoinColumn (name = "id_equipement"))
     private Set<Equipement> equipements ;
 
-    @OneToMany (mappedBy = "pieces")
+    @ManyToMany(mappedBy = "pieces")
     private Set<Composant> composants;
 }
