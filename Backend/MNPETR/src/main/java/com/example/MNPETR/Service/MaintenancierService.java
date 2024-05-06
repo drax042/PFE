@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MaintenancierService {
+public class MaintenancierService implements IMaintenancierService {
 
     public final MaintenancierRepo maintenancierRepo ;
 
@@ -19,22 +19,24 @@ public class MaintenancierService {
         this.maintenancierRepo = maintenancierRepo;
     }
 
-
+    @Override
     public List<Maintenancier> getAllMaintenancier() {
         return maintenancierRepo.findAll() ;
     }
 
+    @Override
     public Optional<Maintenancier> getMaintenancierByID(Integer ID_Maintenancier){
         return maintenancierRepo.findById(ID_Maintenancier);
-
-}
-
-    public List<Maintenancier> getMaintenancierByNom_MaintenancierAndAndPrenom_Maintenancier(String nom_maintenancier, String prenom_maintenancier) {
-    return maintenancierRepo.getMaintenancierByNom_MaintenancierAndAndPrenom_Maintenancier(nom_maintenancier,prenom_maintenancier);
     }
-    public List<Employe> getEmployeByEmailEmploye (String email) {
-        return maintenancierRepo.getEmployeByEmailEmploye(email);
 
+    @Override
+    public List<Maintenancier> getMaintenancierByNom_MaintenancierAndAndPrenom_Maintenancier(String nom_maintenancier, String prenom_maintenancier) {
+        return maintenancierRepo.getMaintenancierByNom_MaintenancierAndAndPrenom_Maintenancier(nom_maintenancier,prenom_maintenancier);
+    }
+
+    @Override
+    public List<Employe> getEmployeByEmailEmploye(String email) {
+        return maintenancierRepo.getEmployeByEmailEmploye(email);
     }
 
 

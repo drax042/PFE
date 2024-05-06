@@ -42,7 +42,4 @@ public class Piece {
 
     @ManyToMany(mappedBy = "pieces")
     private Set<Composant> composants;
-
-
-
 }
