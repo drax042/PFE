@@ -11,40 +11,40 @@ import java.util.Optional;
 
 @Service
 public class DemandeDeTravailService implements IDemandeDeTravailService {
-    private final DemandeDeTravailRepo demandeDeTravailRepo ;
+    private final DemandeDeTravailRepo demandeDeTravailRepo;
 
     @Autowired
     public DemandeDeTravailService(DemandeDeTravailRepo demandeDetravailRepo) {
         this.demandeDeTravailRepo = demandeDetravailRepo;
     }
-@Override
-    public List<DemandeDeTravail> getAllDemandeDeTravail(){
 
-        return demandeDeTravailRepo.findAll() ;
+    @Override
+    public List<DemandeDeTravail> getAllDemandeDeTravail() {
+
+        return demandeDeTravailRepo.findAll();
     }
-@Override
-    public Optional<DemandeDeTravail> getDemandeDeTravailByID(Integer ID_DemandeDeTravail){
-        return demandeDeTravailRepo.findById(ID_DemandeDeTravail) ;
+
+    @Override
+    public Optional<DemandeDeTravail> getDemandeDeTravailByID(Integer ID_DemandeDeTravail) {
+        return demandeDeTravailRepo.findById(ID_DemandeDeTravail);
     }
-@Override
-    public void saveDemandeDeTravail(DemandeDeTravail demandeDeTravail){
+
+    @Override
+    public void saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
 
         demandeDeTravailRepo.save(demandeDeTravail);
     }
 
     @Override
-    public void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail){
+    public void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
         demandeDeTravailRepo.delete(demandeDeTravail);
     }
 
     @Override
-    public List<DemandeDeTravail> findDemandeDeTravailByDateDT(Date Date_DT){
+    public List<DemandeDeTravail> findDemandeDeTravailByDateDT(Date Date_DT) {
         return demandeDeTravailRepo.findDemandeDeTravailByDate_DT(Date_DT);
     }
+}
 
 
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> origin/adel
+

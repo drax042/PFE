@@ -24,9 +24,6 @@ public class Piece {
     @Column (name = "nom_piece")
     private String Nom_Piece ;
 
-    @Column (name = "type_piece")
-    private String Type_Piece ;
-
     @Column (name = "description_piece")
     private String Description_Piece ;
 

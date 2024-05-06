@@ -10,11 +10,13 @@ public interface IPieceService {
 
     Optional<Piece> getPieceById(Integer ID_Piece);
 
+    List<Piece> getPieceByType(String Type_Piece);
+
+    List<Piece> getPieceByName(String Nom_Piece);
+
     void savePiece(Piece piece);
 
     void deletePiece(Piece piece);
 
-    List<Piece> findPieceByTypePiece(String Type_Piece);
 
-    List<Piece> findPieceByNom_Piece(String Nom_Piece);
 }

@@ -28,12 +28,12 @@ public class PieceService implements IPieceService {
 
     @Override
     public List<Piece> getPieceByType(String Type_Piece) {
-        return pieceRepo.findByTypePiece(Type_Piece);
+        return pieceRepo.findPieceByTypePiece(Type_Piece);
     }
 
     @Override
     public List<Piece> getPieceByName(String Nom_Piece) {
-        return pieceRepo.findByNamePiece(Nom_Piece);
+        return pieceRepo.findPieceByNomPiece(Nom_Piece);
     }
 
     @Override
@@ -47,16 +47,9 @@ public class PieceService implements IPieceService {
     }
 
 
-@Override
-    public List<Piece> findPieceByTypePiece(String Type_Piece){
-        return pieceRepo.findPieceByTypePiece(Type_Piece) ;
-    }
-@Override
-    public List<Piece> findPieceByNom_Piece(String Nom_Piece){
-        return pieceRepo.findPieceByNomPiece(Nom_Piece) ;
     }
 
 
 
-}
+
 
