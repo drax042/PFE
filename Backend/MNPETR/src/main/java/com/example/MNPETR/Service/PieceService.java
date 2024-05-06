@@ -9,34 +9,39 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PieceService {
+public class PieceService implements IPieceService {
     private final PieceRepo pieceRepo ;
     @Autowired
     public PieceService(PieceRepo pieceRepo) {
         this.pieceRepo = pieceRepo;
     }
 
+    @Override
     public List<Piece> getAllPiece(){
         return pieceRepo.findAll() ;
     }
 
-    public Optional<Piece> getPieceById(Integer ID_Piece ) {
+    @Override
+    public Optional<Piece> getPieceById(Integer ID_Piece) {
         return pieceRepo.findById(ID_Piece) ;
     }
 
+    @Override
     public List<Piece> getPieceByType(String Type_Piece) {
         return pieceRepo.findByTypePiece(Type_Piece);
     }
 
+    @Override
     public List<Piece> getPieceByName(String Nom_Piece) {
         return pieceRepo.findByNamePiece(Nom_Piece);
     }
 
-    public  Piece savePiece (Piece piece){
+    @Override
+    public  Piece savePiece(Piece piece){
         return pieceRepo.save(piece) ;
-
     }
 
+    @Override
     public void deletePiece(Piece piece) {
         pieceRepo.delete(piece);
     }
