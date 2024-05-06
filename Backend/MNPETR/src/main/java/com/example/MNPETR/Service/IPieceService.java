@@ -14,7 +14,7 @@ public interface IPieceService {
 
     List<Piece> getPieceByName(String Nom_Piece);
 
-    void savePiece(Piece piece);
+    Piece savePiece(Piece piece);
 
     void deletePiece(Piece piece);
 

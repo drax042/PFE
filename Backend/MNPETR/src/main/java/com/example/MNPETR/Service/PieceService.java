@@ -37,8 +37,8 @@ public class PieceService implements IPieceService {
     }
 
     @Override
-    public  void savePiece(Piece piece){
-        pieceRepo.save(piece) ;
+    public Piece savePiece(Piece piece){
+        return pieceRepo.save(piece);
     }
 
     @Override
