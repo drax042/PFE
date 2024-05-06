@@ -5,35 +5,51 @@ import com.example.MNPETR.Repository.PieceRepo;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PieceService {
+public class PieceService implements IPieceService {
     private final PieceRepo pieceRepo ;
 @Autowired
     public PieceService(PieceRepo pieceRepo) {
-        this.pieceRepo = pieceRepo;
-    }
 
+    this.pieceRepo = pieceRepo;
+    }
+@Override
     public List<Piece> getAllPiece(){
-        return pieceRepo.findAll() ;
+    return pieceRepo.findAll() ;
     }
 
-    public Optional<Piece> getPieceById(Integer ID_Piece ) {
+    @Override
+    public Optional<Piece> getPieceById(Integer ID_Piece) {
      return pieceRepo.findById(ID_Piece) ;
 
     }
 
-    public  Piece savePiece (Piece piece){
-        return pieceRepo.save(piece) ;
+
+@Override
+    public  void savePiece(Piece piece){
+         pieceRepo.save(piece) ;
 
     }
-
+@Override
     public void deletePiece(Piece piece) {
         pieceRepo.delete(piece);
     }
+
+@Override
+    public List<Piece> findPieceByTypePiece(String Type_Piece){
+        return pieceRepo.findPieceByTypePiece(Type_Piece) ;
+    }
+@Override
+    public List<Piece> findPieceByNom_Piece(String Nom_Piece){
+        return pieceRepo.findPieceByNomPiece(Nom_Piece) ;
+    }
+
+
 
 }

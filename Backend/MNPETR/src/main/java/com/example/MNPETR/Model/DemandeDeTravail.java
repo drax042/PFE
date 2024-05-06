@@ -4,6 +4,7 @@ package com.example.MNPETR.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
