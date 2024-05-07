@@ -15,7 +15,7 @@ public interface IOrdreDeTravailService {
 
     List<OrdreDeTravail> getOrdreDeTravailByTypeOtz(String Type_Otz);
 
-    OrdreDeTravail save(OrdreDeTravail ordreDeTravail);
+    OrdreDeTravail saveOrdreDeTravail(OrdreDeTravail ordreDeTravail);
 
-    void delete(OrdreDeTravail ordreDeTravail);
+    void deleteOrdreDeTravail(OrdreDeTravail ordreDeTravail);
 }

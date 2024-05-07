@@ -38,12 +38,12 @@ public class OrdreDeTravailService implements IOrdreDeTravailService {
     }
 
     @Override
-    public OrdreDeTravail save(OrdreDeTravail ordreDeTravail) {
+    public OrdreDeTravail saveOrdreDeTravail(OrdreDeTravail ordreDeTravail) {
         return ordreDeTravailRepo.save(ordreDeTravail);
     }
 
     @Override
-    public void delete(OrdreDeTravail ordreDeTravail) {
+    public void deleteOrdreDeTravail(OrdreDeTravail ordreDeTravail) {
         ordreDeTravailRepo.delete(ordreDeTravail);
     }
 
