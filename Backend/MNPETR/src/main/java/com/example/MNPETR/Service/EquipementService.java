@@ -28,12 +28,12 @@ public class EquipementService implements IEquipementService {
     }
 
     @Override
-    public Equipement save(Equipement equipement) {
+    public Equipement saveEquipement(Equipement equipement) {
         return equipementRepo.save(equipement);
     }
 
     @Override
-    public void delete(Equipement equipment) {
+    public void deleteEquipement(Equipement equipment) {
         equipementRepo.delete(equipment);
     }
 }

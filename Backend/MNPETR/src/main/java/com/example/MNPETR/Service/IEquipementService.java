@@ -10,7 +10,7 @@ public interface IEquipementService {
 
     Optional<Equipement> getEquipementById(Integer ID_Equipement);
 
-    Equipement save(Equipement equipement);
+    Equipement saveEquipement(Equipement equipement);
 
-    void delete(Equipement equipment);
+    void deleteEquipement(Equipement equipment);
 }

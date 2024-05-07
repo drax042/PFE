@@ -30,9 +30,9 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     }
 
     @Override
-    public void saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
+    public DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
 
-        demandeDeTravailRepo.save(demandeDeTravail);
+       return demandeDeTravailRepo.save(demandeDeTravail);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     }
 
     @Override
-    public List<DemandeDeTravail> findDemandeDeTravailByDateDT(Date Date_DT) {
+    public List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT) {
         return demandeDeTravailRepo.findDemandeDeTravailByDate_DT(Date_DT);
     }
 }

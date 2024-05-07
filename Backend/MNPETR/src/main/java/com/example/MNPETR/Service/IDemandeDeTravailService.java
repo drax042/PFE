@@ -11,9 +11,9 @@ public interface IDemandeDeTravailService {
 
     Optional<DemandeDeTravail> getDemandeDeTravailByID(Integer ID_DemandeDeTravail);
 
-    void saveDemandeDeTravail(DemandeDeTravail demandeDeTravail);
+    DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail);
 
     void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail);
 
-    List<DemandeDeTravail> findDemandeDeTravailByDateDT(Date Date_DT);
+    List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT);
 }
