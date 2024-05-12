@@ -24,6 +24,9 @@ public class DemandeDeTravail {
     @Column (name = "description_panne")
     private String Description_Panne;
 
+    @Column(name = "approuve")
+    private boolean Approuve;
+
     @ManyToOne
     @JoinColumn(name = "id_responsable_maintenance")
     private ResponsableMaintenance responsableMaintenance;

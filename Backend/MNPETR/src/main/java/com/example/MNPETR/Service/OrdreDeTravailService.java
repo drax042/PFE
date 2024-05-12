@@ -47,4 +47,17 @@ public class OrdreDeTravailService implements IOrdreDeTravailService {
         ordreDeTravailRepo.delete(ordreDeTravail);
     }
 
+    @Override
+    public Boolean etatOrdreDeTravail(Integer ID_OT, boolean Termine) {
+        Optional<OrdreDeTravail> ordreDeTravailOptional = ordreDeTravailRepo.findById(ID_OT);
+        if (ordreDeTravailOptional.isPresent()) {
+            OrdreDeTravail ordreDeTravail = ordreDeTravailOptional.get();
+            ordreDeTravail.setTermine(Termine);
+            ordreDeTravailRepo.save(ordreDeTravail);
+            return true; // Return true to indicate successful update
+        } else {
+            return false; // Return false to indicate that the order with the given ID was not found
+        }
+    }
+
 }

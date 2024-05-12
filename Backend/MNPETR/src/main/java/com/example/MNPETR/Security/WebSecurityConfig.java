@@ -18,9 +18,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/demanedeDeTravails/**").permitAll() // Ajuster les permissions selon les besoins
+                        .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -48,7 +46,6 @@ public class WebSecurityConfig {
     // Configurer le service d'authentification (InMemory ou autre source de données)
     @Bean
     public UserDetailsService userDetailsService() {
-        // Configurer les utilisateurs en mémoire ou avec une source de données appropriée
         return new InMemoryUserDetailsManager();
     }
 }

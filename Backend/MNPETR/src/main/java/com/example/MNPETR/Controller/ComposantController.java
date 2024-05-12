@@ -11,15 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/composants")
 public class ComposantController {
-
-    private final ComposantService composantService;
-
     @Autowired
-    public ComposantController(ComposantService composantService) {
-        this.composantService = composantService;
-    }
+    private ComposantService composantService;
 
     @GetMapping
     public List<Composant> getAllComposants() {

@@ -44,6 +44,19 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     public List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT) {
         return demandeDeTravailRepo.findDemandeDeTravailByDate_DT(Date_DT);
     }
+
+    @Override
+    public boolean etatDemandeDeTravail(Integer ID_DT, boolean approuve) {
+        Optional<DemandeDeTravail> demandeDeTravailOptional= demandeDeTravailRepo.findById(ID_DT);
+        if (demandeDeTravailOptional.isPresent()) {
+            DemandeDeTravail demandeDeTravaile = demandeDeTravailOptional.get();
+            demandeDeTravaile.setApprouve(approuve);
+            demandeDeTravailRepo.save(demandeDeTravaile);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 

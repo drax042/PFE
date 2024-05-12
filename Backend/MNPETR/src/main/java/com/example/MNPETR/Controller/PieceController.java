@@ -18,12 +18,8 @@ import java.util.Optional;
         RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class PieceController {
 
-    private final PieceService pieceService;
-
     @Autowired
-    public PieceController(PieceService pieceService) {
-        this.pieceService = pieceService;
-    }
+    private PieceService pieceService;
 
     @GetMapping
     public List<Piece> getAllPieces() {

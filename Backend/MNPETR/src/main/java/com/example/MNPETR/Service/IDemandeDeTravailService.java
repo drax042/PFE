@@ -16,4 +16,6 @@ public interface IDemandeDeTravailService {
     void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail);
 
     List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT);
+
+    boolean etatDemandeDeTravail(Integer ID_DT, boolean approuve);
 }

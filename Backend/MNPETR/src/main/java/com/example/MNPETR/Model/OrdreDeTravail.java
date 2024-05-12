@@ -32,6 +32,9 @@ public class OrdreDeTravail {
     @Column(name = "type_otz")
     private String Type_Otz;
 
+    @Column(name = "termine")
+    private boolean Termine;
+
     @ManyToMany(mappedBy = "ordresDeTravail") // mappedBy fait référence à l'attribut dans Maintenancier
     private Set<Maintenancier> maintenanciers; // Ensemble pour gérer plusieurs Maintenancier
 

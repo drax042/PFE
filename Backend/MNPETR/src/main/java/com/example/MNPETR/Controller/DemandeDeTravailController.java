@@ -15,12 +15,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/demanedeDeTravails")
 public class DemandeDeTravailController {
     @Autowired
-    public  DemandeDeTravailService demandeDeTravailService;
-
+    public DemandeDeTravailService demandeDeTravailService;
 
     @GetMapping
     public List<DemandeDeTravail> getAllDemandeDeTravails() {
@@ -28,7 +27,7 @@ public class DemandeDeTravailController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DemandeDeTravail> getDemandeDeTravail(@PathVariable Integer id) {
+    public ResponseEntity<DemandeDeTravail> getDemandeDeTravailById(@PathVariable Integer id) {
         Optional<DemandeDeTravail> demandeDeTravail= demandeDeTravailService.getDemandeDeTravailByID(id);
         if (demandeDeTravail.isPresent()) {
             return ResponseEntity.ok(demandeDeTravail.get());
@@ -48,7 +47,6 @@ public class DemandeDeTravailController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     @PostMapping
     public ResponseEntity<DemandeDeTravail> addDemandeDeTravail(@RequestBody DemandeDeTravail demandeDeTravail) {

@@ -11,16 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
-
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/equipements")
 public class EquipementController {
-    public final EquipementService equipementService;
 
     @Autowired
-    public EquipementController(EquipementService equipementService) {
-        this.equipementService = equipementService;
-    }
+    public EquipementService equipementService;
 
     @GetMapping
     public List<Equipement> getAllEquipements() {

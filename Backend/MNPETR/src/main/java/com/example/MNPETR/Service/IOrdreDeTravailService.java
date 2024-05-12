@@ -18,4 +18,6 @@ public interface IOrdreDeTravailService {
     OrdreDeTravail saveOrdreDeTravail(OrdreDeTravail ordreDeTravail);
 
     void deleteOrdreDeTravail(OrdreDeTravail ordreDeTravail);
+
+    Boolean etatOrdreDeTravail(Integer ID_OT, boolean Etat);
 }
