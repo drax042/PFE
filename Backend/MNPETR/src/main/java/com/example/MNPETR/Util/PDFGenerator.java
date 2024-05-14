@@ -39,7 +39,7 @@ public class PDFGenerator {
                             ", Date_OT: " + dateOT +
                             ", Description_Panne: " + ordreDeTravail.getDescription_Panne() +
                             ", Type_Otz: " + ordreDeTravail.getType_Otz() +
-                            ", Termine: " + ordreDeTravail.isTermine();
+                            ", status: " + ordreDeTravail.getStatusOT();
 
                     contentStream.showText(content);
                     contentStream.newLine();

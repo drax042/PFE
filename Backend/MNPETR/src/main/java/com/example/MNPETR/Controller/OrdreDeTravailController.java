@@ -1,5 +1,6 @@
 package com.example.MNPETR.Controller;
 
+import com.example.MNPETR.Model.Enum.StatusOT;
 import com.example.MNPETR.Model.OrdreDeTravail;
 import com.example.MNPETR.Service.OrdreDeTravailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class OrdreDeTravailController {
         return ordreDeTravailService.getAllOrdreDeTravail();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id")
     public ResponseEntity<OrdreDeTravail> getOrdreDeTravailById(@PathVariable int id) {
         Optional<OrdreDeTravail> ordreDeTravail = ordreDeTravailService.getOrdreDeTravailById(id);
         return ordreDeTravail.map(ResponseEntity::ok)
@@ -44,9 +45,33 @@ public class OrdreDeTravailController {
         }
     }
 
+    @GetMapping("/status")
+    public ResponseEntity<List<OrdreDeTravail>> getOrdreDeTravailByStatus(@PathVariable String status) {
+        List<OrdreDeTravail> ordreDeTravail = ordreDeTravailService.getOrdreDeTravailByStatus(status);
+            if (!ordreDeTravail.isEmpty()) {
+                return ResponseEntity.ok(ordreDeTravail);
+            }else {
+                return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<OrdreDeTravail> addOrdreDeTravail(@RequestBody OrdreDeTravail ordreDeTravail) {
         OrdreDeTravail savedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOrdreDeTravail);
     }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<OrdreDeTravail> updateOrdreDeTravailStatus(@PathVariable int id, @RequestParam StatusOT newStatusOT) {
+        Optional<OrdreDeTravail> optionalOrdreDeTravail = ordreDeTravailService.getOrdreDeTravailById(id);
+        if (optionalOrdreDeTravail.isPresent()) {
+            OrdreDeTravail ordreDeTravail = optionalOrdreDeTravail.get();
+            ordreDeTravail.setStatusOT(newStatusOT);
+            OrdreDeTravail updatedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
+            return ResponseEntity.ok(updatedOrdreDeTravail);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

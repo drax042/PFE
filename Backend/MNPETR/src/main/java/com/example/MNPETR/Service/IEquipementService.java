@@ -12,5 +12,7 @@ public interface IEquipementService {
 
     Equipement saveEquipement(Equipement equipement);
 
+    List<Equipement> getEquipementByStatus(String statusEquipement);
+
     void deleteEquipement(Equipement equipment);
 }

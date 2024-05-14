@@ -1,6 +1,9 @@
 package com.example.MNPETR.Controller;
 
 import com.example.MNPETR.Model.DemandeDeTravail;
+import com.example.MNPETR.Model.Enum.StatusDT;
+import com.example.MNPETR.Model.Enum.StatusOT;
+import com.example.MNPETR.Model.DemandeDeTravail;
 import com.example.MNPETR.Service.DemandeDeTravailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,20 +51,33 @@ public class DemandeDeTravailController {
         }
     }
 
+    @GetMapping("/status")
+    public ResponseEntity<List<DemandeDeTravail>> getDemandeDeTravailByStatus(@RequestParam String status) {
+        List<DemandeDeTravail> demandeDeTravails=demandeDeTravailService.getDemandeDeTravailByStatus(status);
+        if (!demandeDeTravails.isEmpty()) {
+            return ResponseEntity.ok(demandeDeTravails);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<DemandeDeTravail> addDemandeDeTravail(@RequestBody DemandeDeTravail demandeDeTravail) {
         DemandeDeTravail savedDemandeDeTravail= demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedDemandeDeTravail);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteDemandeDeTravail(@PathVariable Integer id) {
-        Optional<DemandeDeTravail> existingDemandeDeTravail= demandeDeTravailService.getDemandeDeTravailByID(id);
-        if (existingDemandeDeTravail.isPresent()) {
-            demandeDeTravailService.deleteDemandeDeTravail(existingDemandeDeTravail.get());
-            return ResponseEntity.noContent().build();
+    @PutMapping("/{id}/status")
+    public ResponseEntity<DemandeDeTravail> updateDemandeDeTravailStatus(@PathVariable int id, @RequestParam StatusDT newStatusDT) {
+        Optional<DemandeDeTravail> optionalDemandeDeTravail = demandeDeTravailService.getDemandeDeTravailByID(id);
+        if (optionalDemandeDeTravail.isPresent()) {
+            DemandeDeTravail DemandeDeTravail = optionalDemandeDeTravail.get();
+            DemandeDeTravail.setStatusDT(newStatusDT);
+            DemandeDeTravail updatedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(DemandeDeTravail);
+            return ResponseEntity.ok(updatedDemandeDeTravail);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

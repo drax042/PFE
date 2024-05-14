@@ -1,5 +1,6 @@
 package com.example.MNPETR.Model;
 
+import com.example.MNPETR.Model.Enum.StatusEquipement;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +25,8 @@ public class Equipement {
     @Column(name = "description_equipement")
     private String Description_Equipement;
 
-    @Column(name = "etat_equipement")
-    private String Etat_Equipement; // Using camelCase for consistency
+    @Column(name = "status_equipement")
+    private StatusEquipement statusEquipement;
 
     @ManyToMany(mappedBy = "equipements")
     private Set<Piece> pieces;

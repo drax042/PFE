@@ -28,6 +28,11 @@ public class EquipementService implements IEquipementService {
     }
 
     @Override
+    public List<Equipement> getEquipementByStatus(String statusEquipement) {
+        return equipementRepo.findEquipementByStatus(statusEquipement);
+    }
+
+    @Override
     public Equipement saveEquipement(Equipement equipement) {
         return equipementRepo.save(equipement);
     }

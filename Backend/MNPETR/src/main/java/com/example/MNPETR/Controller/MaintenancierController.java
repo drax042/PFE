@@ -18,7 +18,7 @@ public class MaintenancierController {
     public MaintenancierService maintenancierService;
 
     @GetMapping
-    public List<Maintenancier> getMaintenanciers() {
+    public List<Maintenancier> getAllMaintenanciers() {
         return maintenancierService.getAllMaintenancier();
     }
 

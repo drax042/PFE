@@ -13,9 +13,7 @@ public interface IDemandeDeTravailService {
 
     DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail);
 
-    void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail);
-
     List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT);
 
-    boolean etatDemandeDeTravail(Integer ID_DT, boolean approuve);
+    List<DemandeDeTravail> getDemandeDeTravailByStatus(String status);
 }

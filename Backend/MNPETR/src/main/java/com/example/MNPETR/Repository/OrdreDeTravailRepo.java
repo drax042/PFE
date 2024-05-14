@@ -13,9 +13,12 @@ import java.util.Optional;
 @Repository
 public interface OrdreDeTravailRepo extends JpaRepository<OrdreDeTravail, Integer> {
 
-    @Query("SELECT ot FROM OrdreDeTravail ot WHERE ot.Date_OT=:ot")
-    List<OrdreDeTravail> findByDateOt(Date ot);
+    @Query("SELECT ot FROM OrdreDeTravail ot WHERE ot.Date_OT=:date_ot")
+    List<OrdreDeTravail> findByDateOt(Date date_ot);
 
-    @Query("SELECT ot FROM OrdreDeTravail ot WHERE ot.Type_Otz=:ot")
-    List<OrdreDeTravail> findByTypeOtz(String ot);
+    @Query("SELECT ot FROM OrdreDeTravail ot WHERE ot.Type_Otz=:type_ot")
+    List<OrdreDeTravail> findByTypeOtz(String type_ot);
+
+    @Query("select ot from OrdreDeTravail ot where ot.statusOT=:status_ot")
+    List<OrdreDeTravail> findOrdreDeTravailByStatus(String status_ot);
 }

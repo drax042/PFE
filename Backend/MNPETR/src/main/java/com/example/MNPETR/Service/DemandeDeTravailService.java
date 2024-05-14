@@ -20,7 +20,6 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
 
     @Override
     public List<DemandeDeTravail> getAllDemandeDeTravail() {
-
         return demandeDeTravailRepo.findAll();
     }
 
@@ -31,13 +30,7 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
 
     @Override
     public DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
-
        return demandeDeTravailRepo.save(demandeDeTravail);
-    }
-
-    @Override
-    public void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
-        demandeDeTravailRepo.delete(demandeDeTravail);
     }
 
     @Override
@@ -46,16 +39,8 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     }
 
     @Override
-    public boolean etatDemandeDeTravail(Integer ID_DT, boolean approuve) {
-        Optional<DemandeDeTravail> demandeDeTravailOptional= demandeDeTravailRepo.findById(ID_DT);
-        if (demandeDeTravailOptional.isPresent()) {
-            DemandeDeTravail demandeDeTravaile = demandeDeTravailOptional.get();
-            demandeDeTravaile.setApprouve(approuve);
-            demandeDeTravailRepo.save(demandeDeTravaile);
-            return true;
-        } else {
-            return false;
-        }
+    public List<DemandeDeTravail> getDemandeDeTravailByStatus(String status) {
+        return demandeDeTravailRepo.findDemandeDeTravailByStatus(status);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.example.MNPETR.Model;
 
 
+import com.example.MNPETR.Model.Enum.StatusDT;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +25,9 @@ public class DemandeDeTravail {
     @Column (name = "description_panne")
     private String Description_Panne;
 
-    @Column(name = "approuve")
-    private boolean Approuve;
+    @Column(name = "status_dt")
+    @Enumerated(EnumType.STRING)
+    private StatusDT statusDT;
 
     @ManyToOne
     @JoinColumn(name = "id_responsable_maintenance")

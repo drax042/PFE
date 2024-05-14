@@ -1,5 +1,6 @@
 package com.example.MNPETR.Controller;
 
+import com.example.MNPETR.Model.Enum.StatusEquipement;
 import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Service.EquipementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,30 @@ public class EquipementController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/status")
+    public ResponseEntity<List<Equipement>> getEquipementByStatus(@RequestParam String status) {
+        List<Equipement> equipements = equipementService.getEquipementByStatus(status);
+        if (!equipements.isEmpty()) {
+            return ResponseEntity.ok(equipements);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/{id}/status")
+    public ResponseEntity<Equipement> updateEquipementStatus(@PathVariable Integer id, @RequestParam StatusEquipement newStatusEquipement) {
+        Optional<Equipement> OptionalEquipement = equipementService.getEquipementById(id);
+        if (OptionalEquipement.isPresent()) {
+            Equipement equipement = OptionalEquipement.get();
+            equipement.setStatusEquipement(newStatusEquipement);
+            Equipement updatedEquipement = equipementService.saveEquipement(equipement);
+            return ResponseEntity.ok(updatedEquipement);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PostMapping
