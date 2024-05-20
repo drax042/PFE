@@ -1,5 +1,6 @@
 package com.example.MNPETR.Model;
 
+import com.example.MNPETR.Model.Enum.intituleRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ public class Roles {
     private int id;
 
     @Column(name ="intitule")
-    private String intitule;
+    private intituleRole intitule;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
