@@ -1,8 +1,10 @@
 package com.example.MNPETR.Service;
 
+import com.example.MNPETR.Model.Enum.StatusEquipement;
 import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Repository.EquipementRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class EquipementService implements IEquipementService {
     }
 
     @Override
-    public Optional<Equipement> getEquipementById(Integer ID_Equipement) {
+    public Optional<Equipement> getEquipementById(int ID_Equipement) {
         return equipementRepo.findById(ID_Equipement);
     }
 
@@ -40,5 +42,18 @@ public class EquipementService implements IEquipementService {
     @Override
     public void deleteEquipement(Equipement equipment) {
         equipementRepo.delete(equipment);
+    }
+
+    @Override
+    public ResponseEntity<Object> updateEquipementStatus(Integer id, StatusEquipement newStatusEquipement) {
+        Optional<Equipement> optionalEquipement = equipementRepo.findById(id);
+        if (optionalEquipement.isPresent()) {
+            Equipement equipement = optionalEquipement.get();
+            equipement.setStatusEquipement(newStatusEquipement);
+            equipementRepo.save(equipement);
+            return ResponseEntity.ok(equipement);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

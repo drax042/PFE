@@ -2,10 +2,11 @@ package com.example.MNPETR.Controller;
 
 import com.example.MNPETR.Model.DemandeDeTravail;
 import com.example.MNPETR.Model.Enum.StatusDT;
-import com.example.MNPETR.Model.Enum.StatusOT;
-import com.example.MNPETR.Model.DemandeDeTravail;
+import com.example.MNPETR.Model.Enum.StatusEquipement;
+import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Service.DemandeDeTravailService;
 
+import com.example.MNPETR.Service.EquipementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.ID;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/demanedeDeTravails")
 public class DemandeDeTravailController {
     @Autowired
     public DemandeDeTravailService demandeDeTravailService;
+
+    @Autowired
+    public EquipementService equipementService;
 
     @GetMapping
     public List<DemandeDeTravail> getAllDemandeDeTravails() {
@@ -61,10 +68,20 @@ public class DemandeDeTravailController {
         }
     }
 
-    @PostMapping
+   @PostMapping
     public ResponseEntity<DemandeDeTravail> addDemandeDeTravail(@RequestBody DemandeDeTravail demandeDeTravail) {
-        DemandeDeTravail savedDemandeDeTravail= demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedDemandeDeTravail);
+       int equipementId = demandeDeTravail.getEquipementId();
+        Optional<Equipement> optionalEquipement = equipementService.getEquipementById(equipementId);
+        if (optionalEquipement.isPresent()) {
+            Equipement equipement = optionalEquipement.get();
+            equipement.setStatusEquipement(StatusEquipement.En_panne);
+            Equipement updatedEquipement = equipementService.saveEquipement(equipement);
+            equipement.setStatusEquipement(updatedEquipement.getStatusEquipement());
+            DemandeDeTravail savedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedDemandeDeTravail);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}/status")

@@ -3,6 +3,8 @@ package com.example.MNPETR.Service;
 import com.example.MNPETR.Model.Piece;
 import com.example.MNPETR.Repository.PieceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +48,24 @@ public class PieceService implements IPieceService {
         pieceRepo.delete(piece);
     }
 
+    @Override
+    public ResponseEntity<String> decreasePieceQuantity(int pieceId, int quantity) {
+        Optional<Piece> optionalPiece = pieceRepo.findById(pieceId);
+        if (optionalPiece.isPresent()) {
+            Piece piece = optionalPiece.get();
+            int currentQuantity = piece.getQuantite_Piece();
+            int newQuantity = currentQuantity - quantity;
+            if (newQuantity >= 0) {
+                piece.setQuantite_Piece(newQuantity);
+                pieceRepo.save(piece);
+                return ResponseEntity.ok("La quantité de la pièce a été mise à jour avec succès.");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La quantité de la pièce ne peut pas être négative.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La pièce avec l'ID spécifié n'existe pas.");
+        }
+    }
 
     }
 

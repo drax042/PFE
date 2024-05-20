@@ -2,7 +2,9 @@ package com.example.MNPETR.Controller;
 
 import com.example.MNPETR.Model.Enum.StatusOT;
 import com.example.MNPETR.Model.OrdreDeTravail;
+import com.example.MNPETR.Model.Piece;
 import com.example.MNPETR.Service.OrdreDeTravailService;
+import com.example.MNPETR.Service.PieceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ import java.util.Optional;
 public class OrdreDeTravailController {
     @Autowired
     private OrdreDeTravailService ordreDeTravailService;
+
+    @Autowired
+    private PieceService pieceService;
 
     @GetMapping
     public List<OrdreDeTravail> getAllOrdreDeTravail() {
@@ -57,8 +62,23 @@ public class OrdreDeTravailController {
 
     @PostMapping
     public ResponseEntity<OrdreDeTravail> addOrdreDeTravail(@RequestBody OrdreDeTravail ordreDeTravail) {
-        OrdreDeTravail savedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrdreDeTravail);
+        int pieceID= ordreDeTravail.getPieceID();
+        int quantityNeeded= ordreDeTravail.getQuantityNeeded();
+        Optional<Piece> optionalPiece = pieceService.getPieceById(pieceID);
+        if (optionalPiece.isPresent()) {
+            Piece piece = optionalPiece.get();
+            int currentQuantity = piece.getQuantite_Piece();
+            if (currentQuantity >= quantityNeeded) {
+                piece.setQuantite_Piece(currentQuantity - quantityNeeded);
+                pieceService.savePiece(piece);
+                OrdreDeTravail savedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
+                return ResponseEntity.status(HttpStatus.CREATED).body(savedOrdreDeTravail);
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+        } else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PutMapping("/{id}/status")

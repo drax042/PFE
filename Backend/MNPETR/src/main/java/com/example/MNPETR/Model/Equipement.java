@@ -42,6 +42,13 @@ public class Equipement {
     @ManyToMany(mappedBy = "equipements")
     private Set<Maintenancier> maintenanciers;
 
+    @ManyToOne
+    @JoinColumn(name = "id_dt")
+    private DemandeDeTravail demandeDeTravail;
+
+    @ManyToOne
+    @JoinColumn(name = "id_ot")
+    private OrdreDeTravail ordreDeTravail;
 
 }
 

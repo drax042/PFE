@@ -40,14 +40,25 @@ public class OrdreDeTravail {
     @ManyToMany(mappedBy = "ordresDeTravail") // mappedBy fait référence à l'attribut dans Maintenancier
     private Set<Maintenancier> maintenanciers; // Ensemble pour gérer plusieurs Maintenancier
 
-
     @ManyToOne
     @JoinColumn(name = "id_responsable_maintenance")
     private ResponsableMaintenance responsableMaintenance;
-
 
     @ManyToOne
     @JoinColumn (name = "id_magasinier")
     private Magasinier magasinier ;
 
+    @OneToMany (mappedBy = "ordreDeTravail")
+    private Set<Equipement> equipements;
+
+    @OneToMany(mappedBy = "ordreDeTravail")
+    private Set<Piece> pieces;
+
+    @Transient
+    private int pieceID;
+
+    @Transient
+    private int quantityNeeded;
+
 }
+

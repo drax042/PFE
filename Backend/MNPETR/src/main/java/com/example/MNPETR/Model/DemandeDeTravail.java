@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -36,5 +38,12 @@ public class DemandeDeTravail {
     @ManyToOne
     @JoinColumn(name = "id_employe")
     private Employe employe;
+
+    @OneToMany(mappedBy = "demandeDeTravail")
+    private Set<Equipement> equipements;
+
+    @Transient
+    private int equipementId;
+
 
 }
