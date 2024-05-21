@@ -18,9 +18,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.ID;
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/demanedeDeTravails")
@@ -90,6 +87,12 @@ public class DemandeDeTravailController {
         if (optionalDemandeDeTravail.isPresent()) {
             DemandeDeTravail DemandeDeTravail = optionalDemandeDeTravail.get();
             DemandeDeTravail.setStatusDT(newStatusDT);
+            if (newStatusDT == StatusDT.NonApprouve) {
+                DemandeDeTravail.getEquipements().forEach(equipement -> {
+                    equipement.setStatusEquipement(StatusEquipement.Fonctionnel);
+                    equipementService.saveEquipement(equipement);
+                });
+            }
             DemandeDeTravail updatedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(DemandeDeTravail);
             return ResponseEntity.ok(updatedDemandeDeTravail);
         } else {

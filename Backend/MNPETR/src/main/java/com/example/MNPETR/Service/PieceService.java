@@ -15,7 +15,6 @@ public class PieceService implements IPieceService {
     private final PieceRepo pieceRepo ;
 @Autowired
     public PieceService(PieceRepo pieceRepo) {
-
     this.pieceRepo = pieceRepo;
     }
 @Override

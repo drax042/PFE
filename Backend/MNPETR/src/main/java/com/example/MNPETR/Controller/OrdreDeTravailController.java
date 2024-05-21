@@ -1,8 +1,10 @@
 package com.example.MNPETR.Controller;
 
+import com.example.MNPETR.Model.Enum.StatusEquipement;
 import com.example.MNPETR.Model.Enum.StatusOT;
 import com.example.MNPETR.Model.OrdreDeTravail;
 import com.example.MNPETR.Model.Piece;
+import com.example.MNPETR.Service.EquipementService;
 import com.example.MNPETR.Service.OrdreDeTravailService;
 import com.example.MNPETR.Service.PieceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class OrdreDeTravailController {
 
     @Autowired
     private PieceService pieceService;
+
+    @Autowired
+    private EquipementService equipementService;
 
     @GetMapping
     public List<OrdreDeTravail> getAllOrdreDeTravail() {
@@ -87,6 +92,12 @@ public class OrdreDeTravailController {
         if (optionalOrdreDeTravail.isPresent()) {
             OrdreDeTravail ordreDeTravail = optionalOrdreDeTravail.get();
             ordreDeTravail.setStatusOT(newStatusOT);
+            if (newStatusOT == StatusOT.termine) {
+                ordreDeTravail.getEquipements().forEach(equipement -> {
+                    equipement.setStatusEquipement(StatusEquipement.Fonctionnel);
+                    equipementService.saveEquipement(equipement);
+                });
+            }
             OrdreDeTravail updatedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
             return ResponseEntity.ok(updatedOrdreDeTravail);
         } else {

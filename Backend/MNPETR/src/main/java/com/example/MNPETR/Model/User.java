@@ -58,4 +58,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Roles> roles;
+
+    @OneToMany (mappedBy = "user")
+    private Set<Notification> notifications;
+
 }
