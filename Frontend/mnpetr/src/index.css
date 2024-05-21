@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,5 +15,312 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.app{
+
+}
 
 
+.Menu-H{
+  display : flex;
+  background-color : #ff8500 ;
+  height : 70px;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+
+}
+.Menu-H img{
+  width : 55px;
+  margin-right: 5px;
+
+}
+.divKbira{
+}
+.divGauche {
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+  font-family: "Monoton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  gap : 10px ;
+}
+  .divGauche h1{
+
+    font-family: "Monoton", sans-serif;
+    font-size : 35px;
+    font-style: normal;
+
+
+
+
+
+  }
+.divDroite{
+  display: inline-block;
+  
+  justify-content: space-between;
+  margin-right : 5px;
+
+
+}
+.divDroite button{
+   background-color : #969696;
+  border-color : #969696;
+  border-radius : 20px ;
+  justify-content: space-between;
+  padding: 4px;
+
+
+}
+.monoton-regular {
+  font-family: "Monoton", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Debut Login */
+
+.Container_Login {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  min-height: 100vh;
+  margin: auto;
+}
+
+.DivGauche_Login {
+  background-color: #969696;
+}
+
+.DivGauche_Login .image_tuyau{
+  width: 706px;
+  
+}
+
+.DivDroite_Login {
+  background-color: #d5dbdbfa;
+  /* Optionnel pour différencier */
+  padding: 31px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  
+  
+}
+.DivDroite_Login img{
+  width: 54px;
+  border-radius: 3%;
+  cursor: none;
+}
+.Formulaire_Login {
+  display: flex;
+  flex-direction: column;
+  padding: 17px;
+  
+}
+.Formulaire_Login h1{
+  margin-left: 4px;
+}
+.Formulaire_Login div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center ;
+  font-weight: 600;
+  
+  
+}
+.Formulaire_Login div .image_Sonatrach_Login{
+  align-items: center;
+
+
+}
+.orbitron-main {
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.Formulaire_Login label {
+  margin-top: 10px;
+  text-align: left;
+  
+}
+
+.Formulaire_Login input {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.Formulaire_Login input :hover{
+  background-color: #cbcbcb;
+}
+
+.Formulaire_Login button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff8500;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.Formulaire_Login button:hover {
+  background-color: #e18f37;
+  color: white;
+}
+
+
+.Formulaire_Login input:focus {
+  background-color: #a3a3a3;
+  color: black;
+  outline: none;
+  /* Supprime le contour par défaut des navigateurs */
+}
+.Formulaire_Login input:focus::placeholder {
+  color: rgb(255, 255, 255);
+  /* Couleur du placeholder en focus */
+}
+.Formulaire_Login p {
+  font-family:monospace;
+}
+.Formulaire_Login p .problem_text{
+  font-family: monospace;
+  text-decoration: overline;
+}
+.Formulaire_Login p .problem_text :hover{
+  color: #969696;
+}
+.hoverable {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.hoverable:hover {
+  color: #0057ff;
+  /* Couleur bleue contrastante au survol */
+}
+
+/* Side bar heheheheheheheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+.sidebar {
+  width: 250px;
+  background-color: #282c34;
+  height: 100%;
+  position: fixed;
+  color: white;
+  left: 0;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  width: 100%;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.nav-link:hover {
+  background-color: #3a3f47;
+}
+
+.list-element {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.sidebar-title {
+  font-family: 'Orbitron', sans-serif;
+  flex-grow: 1;
+}
+
+.active {
+  background-color: #3a3f47;
+}
+/* Profileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+.profile-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.profile-button:hover {
+  background-color: #0056b3;
+}
+
+.profile-popup {
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #d6dcdc;
+  z-index: 1000;
+}
+
+.profile-popup h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.profile-field label {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.profile-field span {
+  color: #333;
+}
+.patern {
+  opacity: 0.05;
+  
+  width: 100%;
+  height: 82px;
+}

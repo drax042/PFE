@@ -1,19 +1,30 @@
 // App.js
-import React from "react";
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navigation } from "./Components/Navigation";
-import Dashboard from "./Screens/Dashborodos/Dashbord";
-import { Redaction } from "./Screens/Redaction";
-import { Home } from "./Screens/Home";
+import { Menu } from './Components/Menu';
+import { Login } from './Screens/Login';
+import { SideBar } from './Components/SideBar';
+import { MainScreen } from './Screens/MainScreen';
+import {Profile} from "./Screens/Profile";
+import {OT} from "./Screens/OT";
+import {DT} from "./Screens/DT";
+import {Stock} from "./Screens/Stock";
+import {Dashbord} from "./Screens/Dashbord";
 
 function App() {
     return (
         <Router>
-            <div>
+            <div className="app">
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/dashbord" element={<Dashboard />} />
-                    <Route path="/redaction" element={<Redaction />} />
+                    <Route path="/" element={<div />} />
+                    <Route path="/sidebar" element={<SideBar />} />
+                    <Route path="/login" element={<Login  />} />
+                    <Route path="/mainscreen" element={<MainScreen/>} />
+                    <Route path="/ot" element={<OT/>} />
+                    <Route path="/profile" element={<Profile/>} />
+                    <Route path="/dt" element={<DT/>} />
+                    <Route path="/stock" element={<Stock/>} />
+                    <Route path="/dashbord" element={<Dashbord/>} />
                 </Routes>
             </div>
         </Router>
