@@ -17,5 +17,5 @@ public interface IOrdreDeTravailService {
 
     OrdreDeTravail saveOrdreDeTravail(OrdreDeTravail ordreDeTravail);
 
-    void deleteOrdreDeTravail(OrdreDeTravail ordreDeTravail);
+    List<OrdreDeTravail> getOrdreDeTravailByStatus(String status);
 }

@@ -43,6 +43,7 @@ public class Piece {
     @ManyToMany(mappedBy = "pieces")
     private Set<Composant> composants;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "id_ot")
+    private OrdreDeTravail ordreDeTravail;
 }

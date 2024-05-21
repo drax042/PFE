@@ -1,5 +1,6 @@
 package com.example.MNPETR.Model;
 
+import com.example.MNPETR.Model.Enum.StatusOT;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,17 +33,32 @@ public class OrdreDeTravail {
     @Column(name = "type_otz")
     private String Type_Otz;
 
+    @Column(name = "status_ot")
+    @Enumerated(EnumType.STRING)
+    private StatusOT statusOT;
+
     @ManyToMany(mappedBy = "ordresDeTravail") // mappedBy fait référence à l'attribut dans Maintenancier
     private Set<Maintenancier> maintenanciers; // Ensemble pour gérer plusieurs Maintenancier
-
 
     @ManyToOne
     @JoinColumn(name = "id_responsable_maintenance")
     private ResponsableMaintenance responsableMaintenance;
 
-
     @ManyToOne
     @JoinColumn (name = "id_magasinier")
     private Magasinier magasinier ;
 
+    @OneToMany (mappedBy = "ordreDeTravail")
+    private Set<Equipement> equipements;
+
+    @OneToMany(mappedBy = "ordreDeTravail")
+    private Set<Piece> pieces;
+
+    @Transient
+    private int pieceID;
+
+    @Transient
+    private int quantityNeeded;
+
 }
+

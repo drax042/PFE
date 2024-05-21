@@ -13,4 +13,8 @@ public interface IEmployeService {
     void saveEmploye(Employe employe);
 
     void deleteEmploye(Employe employe);
+
+    List<Employe> getEmployeByNomEmployeaAndPrenomEmploye(String Nom_Employe, String Prenom_Employe);
+
+    List<Employe> getEmployeByEmailEmploye(String Email_Employe);
 }

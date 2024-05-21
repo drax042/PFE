@@ -43,8 +43,7 @@ public class OrdreDeTravailService implements IOrdreDeTravailService {
     }
 
     @Override
-    public void deleteOrdreDeTravail(OrdreDeTravail ordreDeTravail) {
-        ordreDeTravailRepo.delete(ordreDeTravail);
+    public List<OrdreDeTravail> getOrdreDeTravailByStatus(String statusOT) {
+        return ordreDeTravailRepo.findOrdreDeTravailByStatus(statusOT);
     }
-
 }

@@ -16,7 +16,7 @@ import java.util.Set;
 public class Magasinier {
 
     @Id
-    @Column(name = "id_magasinier")
+    @Column(name = "id_magasinier", unique = true, nullable = false)
     private int ID_Magasinier;
 
     @Column(name = "nom_magasinier")
@@ -28,12 +28,13 @@ public class Magasinier {
     @Column (name = "email_magasinier")
     private String Email_Magasinier ;
 
-
     @OneToMany(mappedBy = "magasinier")
     private Set<Piece> pieces;
 
     @OneToMany (mappedBy = "magasinier")
     private Set<OrdreDeTravail> ordresDeTravail ;
 
-
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 }

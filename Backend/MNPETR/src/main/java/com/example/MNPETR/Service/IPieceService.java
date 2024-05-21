@@ -1,6 +1,7 @@
 package com.example.MNPETR.Service;
 
 import com.example.MNPETR.Model.Piece;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,10 @@ public interface IPieceService {
 
     List<Piece> getPieceByName(String Nom_Piece);
 
-    void savePiece(Piece piece);
+    Piece savePiece(Piece piece);
 
     void deletePiece(Piece piece);
 
 
+    ResponseEntity<String> decreasePieceQuantity(int pieceId, int quantity);
 }

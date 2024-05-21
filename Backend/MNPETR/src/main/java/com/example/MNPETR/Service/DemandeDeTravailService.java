@@ -20,7 +20,6 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
 
     @Override
     public List<DemandeDeTravail> getAllDemandeDeTravail() {
-
         return demandeDeTravailRepo.findAll();
     }
 
@@ -30,19 +29,18 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     }
 
     @Override
-    public void saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
-
-        demandeDeTravailRepo.save(demandeDeTravail);
+    public DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
+       return demandeDeTravailRepo.save(demandeDeTravail);
     }
 
     @Override
-    public void deleteDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
-        demandeDeTravailRepo.delete(demandeDeTravail);
-    }
-
-    @Override
-    public List<DemandeDeTravail> findDemandeDeTravailByDateDT(Date Date_DT) {
+    public List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT) {
         return demandeDeTravailRepo.findDemandeDeTravailByDate_DT(Date_DT);
+    }
+
+    @Override
+    public List<DemandeDeTravail> getDemandeDeTravailByStatus(String status) {
+        return demandeDeTravailRepo.findDemandeDeTravailByStatus(status);
     }
 }
 

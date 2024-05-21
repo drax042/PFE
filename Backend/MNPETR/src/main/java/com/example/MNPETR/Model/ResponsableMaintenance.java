@@ -10,12 +10,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Table (name = "responsable_maintenance")
 public class ResponsableMaintenance {
 
     @Id
-    @Column(name = "id_responsable_maintenance ")
+    @Column(name = "id_responsable_maintenance", unique = true, nullable = false)
     private int ID_Responsable_Maintenance;
 
     @Column (name = "nom_responsable_maintenance")
@@ -35,5 +34,9 @@ public class ResponsableMaintenance {
 
     @OneToMany(mappedBy = "responsableMaintenance")
     private Set<DemandeDeTravail> demandeDeTravails;
+
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
 }

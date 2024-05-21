@@ -1,11 +1,13 @@
 package com.example.MNPETR.Model;
 
 
+import com.example.MNPETR.Model.Enum.StatusDT;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -25,6 +27,10 @@ public class DemandeDeTravail {
     @Column (name = "description_panne")
     private String Description_Panne;
 
+    @Column(name = "status_dt")
+    @Enumerated(EnumType.STRING)
+    private StatusDT statusDT;
+
     @ManyToOne
     @JoinColumn(name = "id_responsable_maintenance")
     private ResponsableMaintenance responsableMaintenance;
@@ -32,5 +38,12 @@ public class DemandeDeTravail {
     @ManyToOne
     @JoinColumn(name = "id_employe")
     private Employe employe;
+
+    @OneToMany(mappedBy = "demandeDeTravail")
+    private Set<Equipement> equipements;
+
+    @Transient
+    private int equipementId;
+
 
 }

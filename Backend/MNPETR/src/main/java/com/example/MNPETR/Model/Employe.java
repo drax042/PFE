@@ -14,7 +14,7 @@ import java.util.Set;
 @Table (name = "employe")
 public class Employe {
     @Id
-    @Column (name = "id_employe")
+    @Column (name = "id_employe", unique = true, nullable = false)
     private int ID_Employe;
 
     @Column (name = "nom_employe")
@@ -37,7 +37,10 @@ public class Employe {
     private Structure structure;
 
     @ManyToOne
-    @JoinColumn(name = "id_responsabele_employe")
-    private ResponsableEmploye responsable_employe;
+    @JoinColumn(name = "id_responsabele")
+    private Responsable responsable;
 
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 }

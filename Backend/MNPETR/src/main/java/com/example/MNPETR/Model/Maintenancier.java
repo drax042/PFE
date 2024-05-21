@@ -9,11 +9,12 @@ import java.util.Set;
 
 @Entity
 @Data
+@Table(name = "maintenancier")
 public class Maintenancier {
 
     @Id
-    @Column(name = "id_maintenancier") // Assuming there's a primary key
-    private int ID_Maintenancier;// Using camelCase for consistency
+    @Column(name = "id_maintenancier", unique = true, nullable = false) // Assuming there's a primary key
+    private int ID_Maintenancier;
 
     @Column(name ="nom_maintenancier")
     private String Nom_Maintenancier;
@@ -51,6 +52,9 @@ public class Maintenancier {
     inverseJoinColumns = @JoinColumn (name = "id_equipement"))
     private Set<Equipement> equipements ;
 
-
-
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 }
+
+

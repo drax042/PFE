@@ -11,8 +11,8 @@ import java.util.Set;
 public class PreparateurMaintenance {
 
     @Id
-    @Column(name = "id_preparateur_maintenance") // Assuming there's a primary key
-    private int ID_Preparateur_Maintenance;// Using camelCase for consistency
+    @Column(name = "id_preparateur_maintenance", unique = true, nullable = false)
+    private int ID_Preparateur_Maintenance;
 
     @Column(name ="nom_preparateur_maintenance")
     private String Nom_Preparateur_Maintenance;
@@ -26,4 +26,8 @@ public class PreparateurMaintenance {
 
     @OneToMany (mappedBy ="preparateur_maintenance")
     private Set<Equipement> equipements ;
+
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 }
