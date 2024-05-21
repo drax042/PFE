@@ -12,9 +12,9 @@ import java.util.List;
 public interface PieceRepo extends JpaRepository<Piece,Integer>{
 
         @Query("select piece from  Piece piece WHERE piece.Type_Piece =:type_piece")
-        public List<Piece> findPieceByTypePiece(String type_piece);
+        List<Piece> findPieceByTypePiece(String type_piece);
 
         @Query("select piece From Piece piece where piece.Nom_Piece =:nom_piece")
-        public List<Piece> findPieceByNomPiece(String nom_piece) ;
+        List<Piece> findPieceByNomPiece(String nom_piece) ;
 
 }

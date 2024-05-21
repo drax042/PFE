@@ -13,7 +13,7 @@ export const Login = () => {
                     <form className='Formulaire_Login orbitron-main'>
                         <div>
                             <div className='image_Sonatrach_Login'>
-                                <img src='./images/LogoSonatrach.png' alt='Sonatrach Logo' />
+                                <img src='./images/download.png' alt='Sonatrach Logo' />
                             </div>
                             <h1>Connexion :</h1>
 

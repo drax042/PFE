@@ -8,4 +8,9 @@ import org.springframework.stereotype.Service;
 public class NotificationService {
     @Autowired
     private NotificationRepo notificationRepo;
+
+    @Autowired
+    private UserService userService;
+
+    
 }
