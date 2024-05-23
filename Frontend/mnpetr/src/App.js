@@ -9,7 +9,8 @@ import {Profile} from "./Screens/Profile";
 import {OT} from "./Screens/OT";
 import {DT} from "./Screens/DT";
 import {Stock} from "./Screens/Stock";
-import {Dashbord} from "./Screens/Dashbord";
+import {Dashboard} from "./Screens/Dashboard";
+import {Equipements} from "./Screens/Equipements";
 
 function App() {
     return (
@@ -24,7 +25,9 @@ function App() {
                     <Route path="/profile" element={<Profile/>} />
                     <Route path="/dt" element={<DT/>} />
                     <Route path="/stock" element={<Stock/>} />
-                    <Route path="/dashbord" element={<Dashbord/>} />
+                    <Route path="/dashbord" element={<Dashboard/>} />
+                    <Route path="/equipements" element={<Equipements/>} />
+
                 </Routes>
             </div>
         </Router>

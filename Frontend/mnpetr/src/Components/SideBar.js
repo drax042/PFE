@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { SideBarData } from "../SideBarData";
 
-export function SideBar() {
+export function SideBar({ isVisible }) {
     return (
-        <div className="sidebar">
+        <div className={`sidebar ${isVisible ? 'visible' : ''}`}>
             <ul className="sidebar-list">
                 {SideBarData.map((val, key) => (
                     <li key={key} className="list-item">
@@ -19,5 +19,4 @@ export function SideBar() {
             </ul>
         </div>
     );
-
 }

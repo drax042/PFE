@@ -2,77 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body , html{
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 .app{
 
 }
 
 
-.Menu-H{
-  display : flex;
-  background-color : #ff8500 ;
-  height : 70px;
+.Menu-H {
+  display: flex;
+  background-color: #ff8500;
+  height: 70px;
   align-items: center;
   padding: 0 20px;
   justify-content: space-between;
-
 }
-.Menu-H img{
-  width : 55px;
+
+.Menu-H img {
+  width: 55px;
   margin-right: 5px;
+}
 
+.divKbira {
 }
-.divKbira{
-}
+
 .divGauche {
   display: flex;
-  margin-left: 50px;
+  margin-left: 8px;
   align-items: center;
   font-family: "Monoton", sans-serif;
   font-weight: 400;
   font-style: normal;
-  gap : 10px ;
+  gap: 10px;
 }
-  .divGauche h1{
+.divGauche button :hover{
+  color : #282c34;
+}
 
-    font-family: "Monoton", sans-serif;
-    font-size : 35px;
-    font-style: normal;
+.divGauche h1 {
+  font-family: "Monoton", sans-serif;
+  font-size: 35px;
+  font-style: normal;
+}
 
-
-
-
-
-  }
-.divDroite{
+.divDroite {
   display: inline-block;
-  
   justify-content: space-between;
-  margin-right : 5px;
-
-
+  margin-right: 5px;
 }
-.divDroite button{
-   background-color : #969696;
-  border-color : #969696;
-  border-radius : 20px ;
+
+.divDroite button {
+  background-color: #969696;
+  border-color: #969696;
+  border-radius: 20px;
   justify-content: space-between;
   padding: 4px;
-
-
 }
+
 .monoton-regular {
   font-family: "Monoton", sans-serif;
   font-weight: 500;
@@ -82,11 +84,9 @@ code {
 /* Debut Login */
 
 .Container_Login {
-  
   display: flex;
   align-items: center;
   justify-content: center;
-  
   min-height: 100vh;
   margin: auto;
 }
@@ -97,7 +97,6 @@ code {
 
 .DivGauche_Login .image_tuyau{
   width: 706px;
-  
 }
 
 .DivDroite_Login {
@@ -106,36 +105,35 @@ code {
   padding: 31px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  
-  
 }
+
 .DivDroite_Login img{
   width: 54px;
   border-radius: 3%;
   cursor: none;
 }
+
 .Formulaire_Login {
   display: flex;
   flex-direction: column;
   padding: 17px;
-  
 }
+
 .Formulaire_Login h1{
   margin-left: 4px;
 }
+
 .Formulaire_Login div{
   display: flex;
   flex-direction: column;
   justify-content: center ;
   font-weight: 600;
-  
-  
 }
+
 .Formulaire_Login div .image_Sonatrach_Login{
   align-items: center;
-
-
 }
+
 .orbitron-main {
   font-family: "Orbitron", sans-serif;
   font-size: 15px;
@@ -146,7 +144,6 @@ code {
 .Formulaire_Login label {
   margin-top: 10px;
   text-align: left;
-  
 }
 
 .Formulaire_Login input {
@@ -174,7 +171,6 @@ code {
   color: white;
 }
 
-
 .Formulaire_Login input:focus {
   background-color: #a3a3a3;
   color: black;
@@ -200,20 +196,34 @@ code {
   cursor: pointer;
 }
 
-
 .hoverable:hover {
   color: #0057ff;
   /* Couleur bleue contrastante au survol */
 }
 
-/* Side bar heheheheheheheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee */
+/* Side bar */
+.main-container {
+
+
+}
+
+.main-container.sidebar-visible {
+  margin-left: 250px; /* Adjust this value based on your sidebar width */
+  display : inline;
+  transition: margin-left 0.1ms ;
+}
 
 .sidebar {
   width: 250px;
   background-color: #282c34;
   height: 100%;
   position: fixed;
+  left: -250px;
+  transition: left 0.3s ease;
   color: white;
+}
+
+.sidebar.visible {
   left: 0;
 }
 
@@ -233,8 +243,9 @@ code {
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, cursor 0.3s ease;
   width: 100%;
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -260,9 +271,10 @@ code {
 
 .active {
   background-color: #3a3f47;
+  cursor: pointer;
 }
-/* Profileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee */
 
+/* Profile */
 .profile-button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -318,9 +330,75 @@ code {
 .profile-field span {
   color: #333;
 }
+
 .patern {
   opacity: 0.05;
-  
   width: 100%;
   height: 82px;
 }
+
+/* Container for centering the form */
+.dt-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eee2bc;
+}
+
+.dt-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+}
+
+.dt-form label, .dt-form h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 10px;
+}
+
+.dt-form input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.dt-form .radio-options {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dt-form .radio-options label {
+  display: flex;
+  align-items: center;
+}
+
+.dt-form .radio-options input[type="radio"] {
+  margin-right: 5px;
+}
+.dt-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dt-form button:hover {
+    background-color: #0056b3;
+  }
