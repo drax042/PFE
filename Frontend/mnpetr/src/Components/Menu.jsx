@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Menu = () => {
+export const Menu = ({ toggleSidebar }) => {
     const [isProfileVisible, setProfileVisible] = useState(false);
 
     const userProfile = {
@@ -11,39 +11,25 @@ export const Menu = () => {
         poste: 'Illah SpringBoot'
     };
 
-    const showProfile = () => {
-        setProfileVisible(true);
-    };
-
-    const hideProfile = () => {
-        setProfileVisible(false);
+    const toggleProfileVisibility = () => {
+        setProfileVisible(!isProfileVisible);
     };
 
     return (
-        <div className="Menu-H">
-            <div className="divGauche">
-                <img src="./images/Sonatrach1.svg" alt="LOGOSONATRACH" />
+        <div className={'Menu-H'}>
+            <div className={'divGauche'}>
+                <img src={'./images/Sonatrach1.svg'} alt='LOGOSONATRACH' />
                 <h1 className="monoton-regular">MNPETR</h1>
             </div>
-            <span className="divDroite">
-                <button
-                    onMouseEnter={showProfile}
-                    onMouseLeave={hideProfile}
-                >
-                    <span>
-                        <img src="./images/profile-logo.svg" alt="Profile" />
-                    </span>
-                </button>
-                <button>
-                    <span className="">
-                        <img src="./images/logout-logo.svg" alt="Logout" />
-                    </span>
-                </button>
+            <span className={'divDroite'}>
+                <button onClick={toggleProfileVisibility}> <span> <img src={"./images/profile-logo.svg"} /> </span></button>
+                <button><span className="">  <img src={"./images/logout-logo.svg"}/>  </span></button>
             </span>
 
             {isProfileVisible && (
                 <div className="profile-popup">
-                    <h1 className="orbitron-main">Profile</h1>
+                    <h1 className={"orbitron-main"}>Profile</h1>
+                    <button onClick={toggleProfileVisibility}>Close</button>
                     <div className="profile-details">
                         <div className="profile-field">
                             <label className="orbitron-main">Nom:</label>

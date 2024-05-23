@@ -1,16 +1,21 @@
 import {SideBar} from "../Components/SideBar";
 import { Menu } from "../Components/Menu";
-import {Profile} from "./Profile";
+import {useState} from "react";
 
 
 
-export const MainScreen = () =>{
-    return(
-        <div>
-            <Menu></Menu>
-            <SideBar></SideBar>
-            <div className={"patern"}><img src="/images/patern-black.png" alt="Pattern Image"
-                                           className="_1n5oCrZ4RodOub5uA-y5t9 patern"/></div>
+export const MainScreen = () => {
+    const [isSidebarVisible, setSidebarVisible] = useState(false);
+
+    const toggleSidebar = () => {
+        setSidebarVisible(!isSidebarVisible);
+    };
+
+    return (
+        <div className={`main-container ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
+            <Menu toggleSidebar={toggleSidebar} />
+            <SideBar isVisible={isSidebarVisible} />
+
         </div>
-    )
-}
+    );
+};
