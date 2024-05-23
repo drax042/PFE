@@ -99,12 +99,12 @@ public class DemandeDeTravailController {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User currentUser = userService.findByUsername(userDetails.getUsername());
             demandeDeTravail.setStatusDT(newStatusDT);
-            /*if (newStatusDT == StatusDT.NonApprouve) {
+            if (newStatusDT == StatusDT.NonApprouve) {
                 demandeDeTravail.getEquipements().forEach(equipement -> {
                     equipement.setStatusEquipement(StatusEquipement.Fonctionnel);
                     equipementService.saveEquipement(equipement);
                 });
-            }*/
+            }
             DemandeDeTravail updatedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail, currentUser);
             String notificationContent = "La demande de travail ID: " + demandeDeTravail.getID_DT() + " a été mise à jour par l'utilisateur ID: " + currentUser.getId() + " avec le nouveau statut: " + newStatusDT;
             List<User> responsables = userService.getUsersByRole(intituleRole.responsable);
