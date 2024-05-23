@@ -92,12 +92,12 @@ public class OrdreDeTravailController {
         if (optionalOrdreDeTravail.isPresent()) {
             OrdreDeTravail ordreDeTravail = optionalOrdreDeTravail.get();
             ordreDeTravail.setStatusOT(newStatusOT);
-            if (newStatusOT == StatusOT.termine) {
+            /*if (newStatusOT == StatusOT.termine) {
                 ordreDeTravail.getEquipements().forEach(equipement -> {
                     equipement.setStatusEquipement(StatusEquipement.Fonctionnel);
                     equipementService.saveEquipement(equipement);
                 });
-            }
+            }*/
             OrdreDeTravail updatedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
             return ResponseEntity.ok(updatedOrdreDeTravail);
         } else {

@@ -1,7 +1,10 @@
 package com.example.MNPETR.Controller;
 
+import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Model.Piece;
+import com.example.MNPETR.Repository.EquipementRepo;
 import com.example.MNPETR.Service.PieceService;
+import com.example.MNPETR.Service.UserService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,17 +12,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pieces")
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET,
-
-        RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class PieceController {
 
     @Autowired
     private PieceService pieceService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private EquipementRepo equipementRepo;
 
     @GetMapping
     public List<Piece> getAllPieces() {
@@ -41,8 +51,15 @@ public class PieceController {
         return pieceService.getPieceByName(nom);
     }
 
-    @PostMapping
+
+    @PostMapping("/create")
     public ResponseEntity<Piece> addPiece(@RequestBody Piece piece) {
+
+        Set<Equipement> equipements = piece.getEquipements().stream()
+                .map(e -> equipementRepo.findById(e.getID_Equipement()).orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+        piece.setEquipements(equipements);
         Piece addedPiece = pieceService.savePiece(piece);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedPiece);
     }

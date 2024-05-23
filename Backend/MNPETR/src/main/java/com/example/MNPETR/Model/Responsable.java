@@ -27,8 +27,8 @@ public class Responsable {
     @Column (name = "email_responsable")
     private String Email_Responsable;
 
-    @OneToMany (mappedBy ="responsable")
-    private Set<Employe> employes;
+    /*@OneToMany (mappedBy ="responsable")
+    private Set<Employe> employes;*/
 
     @OneToOne
     @JoinColumn(name = "id_user")

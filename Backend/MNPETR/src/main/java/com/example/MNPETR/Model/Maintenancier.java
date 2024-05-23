@@ -45,7 +45,6 @@ public class Maintenancier {
     @JoinColumn(name = "nom_structure")
     private Structure structure;
 
-
     @ManyToMany
     @JoinTable (name = "maintenancier_equipement",
     joinColumns  = @JoinColumn (name = "id_maintenancier"),

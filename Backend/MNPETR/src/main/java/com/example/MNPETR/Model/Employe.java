@@ -29,8 +29,8 @@ public class Employe {
     @Column (name = "poste_employe")
     private String Poste_Employe;
 
-    @OneToMany(mappedBy = "employe")
-    private Set<DemandeDeTravail> demandesDeTravail;
+    /*@OneToMany(mappedBy = "employe")
+    private Set<DemandeDeTravail> demandesDeTravail;*/
 
     @ManyToOne
     @JoinColumn(name = "nom_structure")

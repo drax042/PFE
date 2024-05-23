@@ -35,7 +35,7 @@ public class DemandeDeTravailController {
     public EquipementService equipementService;
 
     @Autowired
-    private INotificationService INotificationService;
+    private NotificationService notificationService;
 
     @GetMapping
     public List<DemandeDeTravail> getAllDemandeDeTravails() {
@@ -99,21 +99,21 @@ public class DemandeDeTravailController {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User currentUser = userService.findByUsername(userDetails.getUsername());
             demandeDeTravail.setStatusDT(newStatusDT);
-            if (newStatusDT == StatusDT.NonApprouve) {
+            /*if (newStatusDT == StatusDT.NonApprouve) {
                 demandeDeTravail.getEquipements().forEach(equipement -> {
                     equipement.setStatusEquipement(StatusEquipement.Fonctionnel);
                     equipementService.saveEquipement(equipement);
                 });
-            }
+            }*/
             DemandeDeTravail updatedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail, currentUser);
             String notificationContent = "La demande de travail ID: " + demandeDeTravail.getID_DT() + " a été mise à jour par l'utilisateur ID: " + currentUser.getId() + " avec le nouveau statut: " + newStatusDT;
             List<User> responsables = userService.getUsersByRole(intituleRole.responsable);
             List<User> responsablesMaintenance = userService.getUsersByRole(intituleRole.responsableMaintenance);
             for (User responsable : responsables) {
-                INotificationService.createNotification(notificationContent, responsable);
+                notificationService.createNotification(notificationContent, responsable);
             }
             for (User responsableMaintenance : responsablesMaintenance) {
-                INotificationService.createNotification(notificationContent, responsableMaintenance);
+                notificationService.createNotification(notificationContent, responsableMaintenance);
             }
             return ResponseEntity.ok(updatedDemandeDeTravail);
         } else {

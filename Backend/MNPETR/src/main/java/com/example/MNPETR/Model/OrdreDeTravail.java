@@ -48,11 +48,11 @@ public class OrdreDeTravail {
     @JoinColumn (name = "id_magasinier")
     private Magasinier magasinier ;
 
-    @OneToMany (mappedBy = "ordreDeTravail")
-    private Set<Equipement> equipements;
+    /*@OneToMany (mappedBy = "ordreDeTravail")
+    private Set<Equipement> equipements;*/
 
-    @OneToMany(mappedBy = "ordreDeTravail")
-    private Set<Piece> pieces;
+    /*@OneToMany(mappedBy = "ordreDeTravail")
+    private Set<Piece> pieces;*/
 
     @Transient
     private int pieceID;

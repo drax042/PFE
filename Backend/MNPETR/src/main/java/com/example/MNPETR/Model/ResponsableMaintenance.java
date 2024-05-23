@@ -26,14 +26,14 @@ public class ResponsableMaintenance {
     @Column (name = "email_responsable_maintenance")
     private String Email_Responsable_Maintenance ;
 
-    @OneToMany(mappedBy = "responsableMaintenance")
-    private Set<Maintenancier> maintenanciers;
+    /*@OneToMany(mappedBy = "responsableMaintenance")
+    private Set<Maintenancier> maintenanciers;*/
 
-    @OneToMany(mappedBy = "responsableMaintenance")
-    private Set<OrdreDeTravail> ordreDeTravails;
+    /*@OneToMany(mappedBy = "responsableMaintenance")
+    private Set<OrdreDeTravail> ordreDeTravails;*/
 
-    @OneToMany(mappedBy = "responsableMaintenance")
-    private Set<DemandeDeTravail> demandeDeTravails;
+    /*@OneToMany(mappedBy = "responsableMaintenance")
+    private Set<DemandeDeTravail> demandeDeTravails;*/
 
     @OneToOne
     @JoinColumn(name = "id_user")

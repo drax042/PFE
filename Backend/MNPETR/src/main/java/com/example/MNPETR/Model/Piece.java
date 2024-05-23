@@ -16,7 +16,7 @@ import java.util.Set;
 public class Piece {
     @Id
     @Column (name ="id_piece")
-    private int ID_Piece ;
+    private int Id ;
 
     @Column (name = "type_piece")
     private String Type_Piece ;
@@ -31,19 +31,19 @@ public class Piece {
     private int Quantite_Piece ;
 
     @ManyToOne
-    @JoinColumn(name="id_magasinier")
+    @JoinColumn(name="id_magasinier") //cbon
     private Magasinier magasinier;
 
     @ManyToMany
     @JoinTable(name ="piece_equipement",
     joinColumns = @JoinColumn (name ="id_piece"),
-    inverseJoinColumns = @JoinColumn (name = "id_equipement"))
+    inverseJoinColumns = @JoinColumn (name = "id_equipement"))//cbon
     private Set<Equipement> equipements ;
 
-    @ManyToMany(mappedBy = "pieces")
+    @ManyToMany(mappedBy = "pieces")//cbon
     private Set<Composant> composants;
 
     @ManyToOne
-    @JoinColumn(name = "id_ot")
+    @JoinColumn(name = "id_ot")//cbon
     private OrdreDeTravail ordreDeTravail;
 }

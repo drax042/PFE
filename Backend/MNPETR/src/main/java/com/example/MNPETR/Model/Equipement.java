@@ -28,7 +28,7 @@ public class Equipement {
     @Column(name = "status_equipement")
     private StatusEquipement statusEquipement;
 
-    @ManyToMany(mappedBy = "equipements")
+    @ManyToMany(mappedBy = "equipements") //cbon
     private Set<Piece> pieces;
 
     @ManyToOne

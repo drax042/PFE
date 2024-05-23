@@ -28,11 +28,11 @@ public class Magasinier {
     @Column (name = "email_magasinier")
     private String Email_Magasinier ;
 
-    @OneToMany(mappedBy = "magasinier")
-    private Set<Piece> pieces;
+    /*@OneToMany(mappedBy = "magasinier")
+    private Set<Piece> pieces;*/
 
-    @OneToMany (mappedBy = "magasinier")
-    private Set<OrdreDeTravail> ordresDeTravail ;
+    /*@OneToMany (mappedBy = "magasinier")
+    private Set<OrdreDeTravail> ordresDeTravail ;*/
 
     @OneToOne
     @JoinColumn(name = "id_user")

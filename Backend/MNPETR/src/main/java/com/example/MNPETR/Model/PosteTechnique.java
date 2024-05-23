@@ -24,6 +24,6 @@ public class PosteTechnique {
     @Column(name = "secteur")
     private String Secteur;
 
-    @OneToMany(mappedBy = "poste_technique")
-    private Set<Equipement> equipements;
+    /*@OneToMany(mappedBy = "poste_technique")
+    private Set<Equipement> equipements;*/
 }

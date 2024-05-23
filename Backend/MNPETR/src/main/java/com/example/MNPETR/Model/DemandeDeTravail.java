@@ -39,8 +39,8 @@ public class DemandeDeTravail {
     @JoinColumn(name = "id_employe")
     private Employe employe;
 
-    @OneToMany(mappedBy = "demandeDeTravail")
-    private Set<Equipement> equipements;
+    /*@OneToMany(mappedBy = "demandeDeTravail")
+    private Set<Equipement> equipements;*/
 
     @ManyToOne
     @JoinColumn(name = "id_user")

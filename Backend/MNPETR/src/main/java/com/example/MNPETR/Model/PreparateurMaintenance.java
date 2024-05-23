@@ -24,8 +24,8 @@ public class PreparateurMaintenance {
     private String Email_Preparateur_Maintenance ;
 
 
-    @OneToMany (mappedBy ="preparateur_maintenance")
-    private Set<Equipement> equipements ;
+    /*@OneToMany (mappedBy ="preparateur_maintenance")
+    private Set<Equipement> equipements ;*/
 
     @OneToOne
     @JoinColumn(name = "id_user")

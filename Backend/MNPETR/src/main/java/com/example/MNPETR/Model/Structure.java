@@ -18,11 +18,11 @@ public class Structure {
     @Column(name = "nom_structure")
     private String Nom_Structure; // Using camelCase for consistency
 
-    @OneToMany(mappedBy = "structure") // mappedBy points to the attribute in Maintenancier
-    private Set<Maintenancier> maintenanciers; // Set to handle multiple maintenanciers
+    /*@OneToMany(mappedBy = "structure") // mappedBy points to the attribute in Maintenancier
+    private Set<Maintenancier> maintenanciers; // Set to handle multiple maintenanciers*/
 
-    @OneToMany (mappedBy = "structure")
-    private Set<Employe> employes ;
+    /*@OneToMany (mappedBy = "structure")
+    private Set<Employe> employes ;*/
 
 
 }
