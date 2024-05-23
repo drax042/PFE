@@ -1,6 +1,7 @@
 package com.example.MNPETR.Service;
 
 import com.example.MNPETR.Model.DemandeDeTravail;
+import com.example.MNPETR.Model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ public interface IDemandeDeTravailService {
 
     Optional<DemandeDeTravail> getDemandeDeTravailByID(Integer ID_DemandeDeTravail);
 
-    DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail);
+    DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail, User user);
 
     List<DemandeDeTravail> getDemandeDeTravailByDateDT(Date Date_DT);
 

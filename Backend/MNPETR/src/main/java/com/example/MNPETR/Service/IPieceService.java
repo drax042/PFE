@@ -19,6 +19,5 @@ public interface IPieceService {
 
     void deletePiece(Piece piece);
 
-
     ResponseEntity<String> decreasePieceQuantity(int pieceId, int quantity);
 }

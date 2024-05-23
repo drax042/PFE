@@ -33,4 +33,5 @@ public class Responsable {
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;
+
 }

@@ -22,7 +22,7 @@ public class MaintenancierController {
         return maintenancierService.getAllMaintenancier();
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Maintenancier> getMaintenancierById(@PathVariable Integer id) {
         Optional<Maintenancier> maintenanciers= maintenancierService.getMaintenancierByID(id);
         if(maintenanciers.isPresent()) {

@@ -6,11 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RolesService {
-    private final RolesRepo rolesRepo;
 
     @Autowired
-    public RolesService(RolesRepo rolesRepo) {
-        this.rolesRepo = rolesRepo;
-    }
-
+    public RolesRepo rolesRepo;
 }

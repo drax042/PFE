@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,6 +17,7 @@ import java.util.Set;
 public class DemandeDeTravail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id_dt")
     private int ID_DT;
 
@@ -41,6 +41,10 @@ public class DemandeDeTravail {
 
     @OneToMany(mappedBy = "demandeDeTravail")
     private Set<Equipement> equipements;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
     @Transient
     private int equipementId;

@@ -28,4 +28,9 @@ public class Notification {
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateEnvoi = new Date();
+    }
 }

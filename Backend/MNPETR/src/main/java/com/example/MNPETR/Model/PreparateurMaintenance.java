@@ -30,4 +30,5 @@ public class PreparateurMaintenance {
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;
+
 }

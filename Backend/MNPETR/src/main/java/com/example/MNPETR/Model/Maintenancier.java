@@ -55,6 +55,7 @@ public class Maintenancier {
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;
+
 }
 
 

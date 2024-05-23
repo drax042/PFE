@@ -62,4 +62,7 @@ public class User {
     @OneToMany (mappedBy = "user")
     private Set<Notification> notifications;
 
+    @OneToMany(mappedBy = "user")
+    private Set<DemandeDeTravail> demandeDeTravails;
+
 }
