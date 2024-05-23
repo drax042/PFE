@@ -1,8 +1,10 @@
 package com.example.MNPETR.Controller;
 
 import com.example.MNPETR.Model.Equipement;
+import com.example.MNPETR.Model.OrdreDeTravail;
 import com.example.MNPETR.Model.Piece;
 import com.example.MNPETR.Repository.EquipementRepo;
+import com.example.MNPETR.Repository.OrdreDeTravailRepo;
 import com.example.MNPETR.Service.PieceService;
 import com.example.MNPETR.Service.UserService;
 import org.apache.coyote.Response;
@@ -31,6 +33,9 @@ public class PieceController {
     @Autowired
     private EquipementRepo equipementRepo;
 
+    @Autowired
+    private OrdreDeTravailRepo ordreDeTravailRepo;
+
     @GetMapping
     public List<Piece> getAllPieces() {
         return pieceService.getAllPiece();
@@ -54,12 +59,13 @@ public class PieceController {
 
     @PostMapping("/create")
     public ResponseEntity<Piece> addPiece(@RequestBody Piece piece) {
-
         Set<Equipement> equipements = piece.getEquipements().stream()
                 .map(e -> equipementRepo.findById(e.getID_Equipement()).orElse(null))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
         piece.setEquipements(equipements);
+        OrdreDeTravail ordreDeTravail = ordreDeTravailRepo.findById(piece.getOrdreDeTravail().getID_OT()).orElse(null);
+        piece.setOrdreDeTravail(ordreDeTravail);
         Piece addedPiece = pieceService.savePiece(piece);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedPiece);
     }
