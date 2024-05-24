@@ -13,13 +13,18 @@ export const Dashboard = () => {
     };
 
     return (
-        <div className={`main-container ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
+        <div className={`main-container ${isSidebarVisible ? 'sidebar-visible' : ''} flex flex-col`}>
             <Menu toggleSidebar={toggleSidebar} />
             <SideBar isVisible={isSidebarVisible} />
-
-            <AfficheurDT />
-            <AfficheurOT />
-            <AfficheurEquipement />
+            <div className="flex flex-col items-center justify-center p-5">
+                <div className="flex justify-center items-center mb-5 space-x-5">
+                    <AfficheurDT />
+                    <AfficheurEquipement />
+                </div>
+                <div className="flex justify-center items-center">
+                    <AfficheurOT />
+                </div>
+            </div>
         </div>
     );
 };

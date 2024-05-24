@@ -27,7 +27,8 @@ code {
 
 .Menu-H {
   display: flex;
-  background-color: #ff8500;
+  background: rgb(255,150,0);
+  background: linear-gradient(90deg, rgba(255,150,0,1) 0%, rgba(255,133,0,1) 71%, rgba(0,0,0,1) 88%);
   height: 70px;
   align-items: center;
   padding: 0 20px;
@@ -58,6 +59,9 @@ code {
 .divGauche button :hover{
   color : #282c34;
 }
+.divGauche .logosvg:hover{
+  fill: black;
+}
 
 .divGauche h1 {
   font-family: "Monoton", sans-serif;
@@ -70,18 +74,18 @@ code {
   justify-content: space-between;
   margin-right: 5px;
   align-items : center;
+
 }
 .divDroite span .energieDuChangement{
   width: 150px;
-  background-color : #ffffff;
+
 }
 
 .divDroite button {
-  background-color: #969696;
-  border-color: #969696;
-  border-radius: 20px;
+
   justify-content: space-between;
-  padding: 0px;
+ width: 47px;
+  margin-right : 15px;
 }
 
 .monoton-regular {
@@ -225,7 +229,8 @@ code {
 
 .sidebar {
   width: 250px;
-  background-color: #282c34;
+  background: rgb(40,44,52);
+  background: linear-gradient(180deg, rgba(40,44,52,1) 21%, rgba(0,0,0,1) 66%);
   height: 100%;
   position: fixed;
   left: -250px;
@@ -348,7 +353,7 @@ code {
 }
 
 /* Container for centering the form */
-.dt-form-container {
+  .dt-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -446,3 +451,5 @@ code {
   color: #007bff;
   text-align: center;
 }
+
+

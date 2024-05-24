@@ -1,10 +1,6 @@
 import React from "react";
 export const SideBarData = [
-        {
-            titre :"Accueil",
-            icone : "./images/accueil-logo.svg" ,
-            link: "/mainscreen"
-        },
+
         {
             titre :"Tableau de bord",
             icone : "./images/dashboard-logo.svg" ,
@@ -26,9 +22,9 @@ export const SideBarData = [
             link: "/stock"
         },
         {
-            titre :"idk",
-            icone : "./images/dt-logo.svg" ,
-            link: "/idk"
+            titre :"Équipements",
+            icone : "./images/factory-logo.svg" ,
+            link: "/equipements"
         },
 
 ]

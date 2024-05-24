@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { AjoutPieceForm } from "../Components/AjoutPieceForm";
 import { AfficheurPiece } from "../Components/AfficheurPiece";
 import { AfficheurComposant } from "../Components/AfficheurComposant";
+import { AjoutPieceForm } from "../Components/AjoutPieceForm";
 import { AjoutComposantForm } from "../Components/AjoutComposantForm";
-import {Menu} from "../Components/Menu";
-import {SideBar} from "../Components/SideBar";
+import { Menu } from "../Components/Menu";
+import { SideBar } from "../Components/SideBar";
 
 export const Stock = () => {
     const [afficherAjoutPiece, setAfficherAjoutPiece] = useState(false);
-    const [afficherComposants, setAfficherComposants] = useState(false);
-
+    const [afficherAjoutComposant, setAfficherAjoutComposant] = useState(false);
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
     const toggleSidebar = () => {
@@ -18,28 +17,44 @@ export const Stock = () => {
 
     return (
         <div>
-            <div>
-                <div className={`main-container ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
-                    <Menu toggleSidebar={toggleSidebar}/>
-                    <SideBar isVisible={isSidebarVisible}/>
+            <Menu toggleSidebar={toggleSidebar} />
+            <div className="relative flex">
+                <SideBar isVisible={isSidebarVisible} />
+                <div className={`flex flex-col flex-grow ${isSidebarVisible ? 'ml-64' : ''} transition-all duration-300 ease-in-out`}>
+                    <div className="flex justify-center mt-6">
+                        <div className="flex flex-wrap justify-around w-11/12">
+                            <AfficheurPiece setAfficherAjoutPiece={setAfficherAjoutPiece} />
+                            <AfficheurComposant setAfficherAjoutComposant={setAfficherAjoutComposant} />
+                        </div>
+                    </div>
+                    {afficherAjoutPiece && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                            <div className="bg-white p-6 rounded-lg shadow-lg w-1/2">
+                                <AjoutPieceForm />
+                                <button
+                                    className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => setAfficherAjoutPiece(false)}
+                                >
+                                    Fermer
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    {afficherAjoutComposant && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                            <div className="bg-white p-6 rounded-lg shadow-lg w-1/2">
+                                <AjoutComposantForm />
+                                <button
+                                    className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => setAfficherAjoutComposant(false)}
+                                >
+                                    Fermer
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
-            <AfficheurPiece/>
-            <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
-                onClick={() => setAfficherAjoutPiece(!afficherAjoutPiece)}
-            >
-                {afficherAjoutPiece ? "Masquer le formulaire d'ajout de pièce" : "Afficher le formulaire d'ajout de pièce"}
-            </button>
-            {afficherAjoutPiece && <AjoutPieceForm />}
-
-            <button
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4"
-                onClick={() => setAfficherComposants(!afficherComposants)}
-            >
-                {afficherComposants ? "Masquer les composants" : "Afficher les composants"}
-            </button>
-            {afficherComposants && <AfficheurComposant />}
         </div>
     );
 };

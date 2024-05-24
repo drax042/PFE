@@ -36,19 +36,27 @@ export const AjoutComposantForm = () => {
     };
 
     return (
-        <div className="composant-form-container">
-            <form className="composant-form" onSubmit={handleSubmit}>
-                <h1>Ajout de Composant:</h1>
-                <label>Nom Composant :</label>
-                <input value={composant.nom} name={'nom'} onChange={handleChange} />
-                <label>ID Composant :</label>
-                <input value={composant.id} name={'id'} onChange={handleChange} />
-                <label>Description Composant :</label>
-                <input type="text" name="description" value={composant.description} onChange={handleChange} />
-                <label>Quantité :</label>
-                <input type="number" name="quantite" value={composant.quantite} onChange={handleChange} />
-                <button type={'submit'}>Ajouter</button>
-                {message && <p>{message}</p>}
+        <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+                <h1 className="text-xl font-semibold mb-4">Ajout de Composant:</h1>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Nom Composant :</label>
+                    <input className="mt-1 p-2 border border-gray-300 rounded-md w-full" value={composant.nom} name={'nom'} onChange={handleChange} />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">ID Composant :</label>
+                    <input className="mt-1 p-2 border border-gray-300 rounded-md w-full" value={composant.id} name={'id'} onChange={handleChange} />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Description Composant :</label>
+                    <input type="text" className="mt-1 p-2 border border-gray-300 rounded-md w-full" name="description" value={composant.description} onChange={handleChange} />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Quantité :</label>
+                    <input type="number" className="mt-1 p-2 border border-gray-300 rounded-md w-full" name="quantite" value={composant.quantite} onChange={handleChange} />
+                </div>
+                <button type={'submit'} className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Ajouter</button>
+                {message && <p className="mt-4 text-center text-green-500">{message}</p>}
             </form>
         </div>
     );
