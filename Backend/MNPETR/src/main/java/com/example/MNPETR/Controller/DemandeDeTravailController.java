@@ -8,12 +8,14 @@ import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Model.User;
 import com.example.MNPETR.Service.*;
 
+import com.example.MNPETR.Util.RoleChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.events.Event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,7 +56,7 @@ public class DemandeDeTravailController {
 
     @GetMapping("/{date}")
     public ResponseEntity<List<DemandeDeTravail>> getDemandeDeTravailByDate(@PathVariable String datedt) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat( "dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat( "DD/MM/YYYY");
         Date date = formatter.parse(datedt);
         List<DemandeDeTravail> demandeDeTravail = demandeDeTravailService.getDemandeDeTravailByDateDT(date);
         if (!demandeDeTravail.isEmpty()) {
@@ -65,7 +67,7 @@ public class DemandeDeTravailController {
     }
 
     @GetMapping("/status")
-    public ResponseEntity<List<DemandeDeTravail>> getDemandeDeTravailByStatus(@RequestParam String status) {
+    public ResponseEntity<List<DemandeDeTravail>> getDemandeDeTravailByStatus(@RequestParam StatusDT status) {
         List<DemandeDeTravail> demandeDeTravails=demandeDeTravailService.getDemandeDeTravailByStatus(status);
         if (!demandeDeTravails.isEmpty()) {
             return ResponseEntity.ok(demandeDeTravails);
@@ -76,19 +78,22 @@ public class DemandeDeTravailController {
 
     @PostMapping
     public ResponseEntity<DemandeDeTravail> addDemandeDeTravail(@RequestBody DemandeDeTravail demandeDeTravail) {
-        int equipementId = demandeDeTravail.getEquipementId();
-        Optional<Equipement> optionalEquipement = equipementService.getEquipementById(equipementId);
-        if (optionalEquipement.isPresent()) {
-            Equipement equipement = optionalEquipement.get();
+        if (demandeDeTravail.getEquipements() != null && !demandeDeTravail.getEquipements().isEmpty()) {
+            // Supposons qu'un seul équipement est associé à la demande de travail
+            Equipement equipement = demandeDeTravail.getEquipements().iterator().next();
             equipement.setStatusEquipement(StatusEquipement.En_panne);
             equipementService.saveEquipement(equipement);
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User currentUser = userService.findByUsername(userDetails.getUsername());
-            DemandeDeTravail savedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail, currentUser);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedDemandeDeTravail);
         } else {
-            return ResponseEntity.notFound().build();
+            // Gérer le cas où aucun équipement n'est associé à la demande de travail
+            return ResponseEntity.badRequest().body(null);
         }
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userService.findByUsername(userDetails.getUsername());
+        demandeDeTravail.setUser(currentUser);
+
+        DemandeDeTravail savedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedDemandeDeTravail);
     }
 
     @PutMapping("/{id}/status")
@@ -105,7 +110,7 @@ public class DemandeDeTravailController {
                     equipementService.saveEquipement(equipement);
                 });
             }
-            DemandeDeTravail updatedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail, currentUser);
+            DemandeDeTravail updatedDemandeDeTravail = demandeDeTravailService.saveDemandeDeTravail(demandeDeTravail);
             String notificationContent = "La demande de travail ID: " + demandeDeTravail.getID_DT() + " a été mise à jour par l'utilisateur ID: " + currentUser.getId() + " avec le nouveau statut: " + newStatusDT;
             List<User> responsables = userService.getUsersByRole(intituleRole.responsable);
             List<User> responsablesMaintenance = userService.getUsersByRole(intituleRole.responsableMaintenance);

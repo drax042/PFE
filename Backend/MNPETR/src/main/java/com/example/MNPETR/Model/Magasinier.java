@@ -16,6 +16,7 @@ import java.util.Set;
 public class Magasinier {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_magasinier", unique = true, nullable = false)
     private int ID_Magasinier;
 

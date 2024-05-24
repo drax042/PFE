@@ -2,14 +2,20 @@ package com.example.MNPETR.Controller;
 
 import com.example.MNPETR.Model.Enum.StatusEquipement;
 import com.example.MNPETR.Model.Equipement;
+import com.example.MNPETR.Model.Piece;
+import com.example.MNPETR.Repository.PieceRepo;
 import com.example.MNPETR.Service.EquipementService;
+import com.example.MNPETR.Service.PieceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -18,6 +24,9 @@ public class EquipementController {
 
     @Autowired
     public EquipementService equipementService;
+
+    @Autowired
+    public PieceRepo pieceRepo;
 
     @GetMapping
     public List<Equipement> getAllEquipements() {
@@ -35,9 +44,9 @@ public class EquipementController {
     }
 
     @GetMapping("/status")
-    public ResponseEntity<List<Equipement>> getEquipementByStatus(@RequestParam String status) {
+    public ResponseEntity<List<Equipement>> getEquipementByStatus(@RequestParam StatusEquipement status) {
         List<Equipement> equipements = equipementService.getEquipementByStatus(status);
-        if (!equipements.isEmpty()) {
+        if (equipements != null && !equipements.isEmpty()) {
             return ResponseEntity.ok(equipements);
         } else {
             return ResponseEntity.notFound().build();
@@ -60,7 +69,12 @@ public class EquipementController {
 
     @PostMapping
     public ResponseEntity<Equipement> addEquipement(@RequestBody Equipement equipement) {
-        Equipement addedEquipement= equipementService.saveEquipement(equipement);
+        Set<Piece> pieces = equipement.getPieces().stream()
+                .map(p -> pieceRepo.findById(p.getId()).orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+        equipement.setPieces(pieces);
+        Equipement addedEquipement = equipementService.saveEquipement(equipement);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedEquipement);
     }
 

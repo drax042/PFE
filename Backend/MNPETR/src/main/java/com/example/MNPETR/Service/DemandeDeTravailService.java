@@ -1,15 +1,14 @@
 package com.example.MNPETR.Service;
 
-import com.example.MNPETR.Model.DemandeDeTravail;
-import com.example.MNPETR.Model.Enum.intituleRole;
-import com.example.MNPETR.Model.User;
+import com.example.MNPETR.Model.*;
+import com.example.MNPETR.Model.Enum.StatusDT;
 import com.example.MNPETR.Repository.DemandeDeTravailRepo;
+import com.example.MNPETR.Repository.EmployeRepo;
+import com.example.MNPETR.Repository.EquipementRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DemandeDeTravailService implements IDemandeDeTravailService {
@@ -23,6 +22,12 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     @Autowired
     public DemandeDeTravailRepo demandeDeTravailRepo;
 
+    @Autowired
+    private EmployeRepo employeRepo;
+
+    @Autowired
+    public EquipementRepo equipementRepo;
+
     @Override
     public List<DemandeDeTravail> getAllDemandeDeTravail() {
         return demandeDeTravailRepo.findAll();
@@ -35,21 +40,28 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
 
 
     @Override
-    public DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail, User user) {
-        demandeDeTravail.setUser(user);
-        demandeDeTravail.setDate_DT(new Date());
-        DemandeDeTravail savedDemandeDeTravail = demandeDeTravailRepo.save(demandeDeTravail);
-        String notificationContent = "Nouvelle demande de travail de la part de l'utilisateur ID: " + user.getId() + " à " + demandeDeTravail.getDate_DT();
-        List<User> responsables = userService.getUsersByRole(intituleRole.responsable);
-        List<User> responsablesMaintenance = userService.getUsersByRole(intituleRole.responsableMaintenance);
-        for (User responsable : responsables) {
-            notificationService.createNotification(notificationContent, responsable);
+    public DemandeDeTravail saveDemandeDeTravail(DemandeDeTravail demandeDeTravail) {
+        if (demandeDeTravail.getEmploye() != null) {
+            Optional<Employe> employeOpt = employeRepo.findById(demandeDeTravail.getEmploye().getID_Employe());
+            if (employeOpt.isPresent()) {
+                demandeDeTravail.setEmploye(employeOpt.get());
+            } else {
+                throw new RuntimeException("Employe non trouvé");
+            }
         }
-
-        for (User responsableMaintenance : responsablesMaintenance) {
-            notificationService.createNotification(notificationContent, responsableMaintenance);
+        if (demandeDeTravail.getEquipements() != null && !demandeDeTravail.getEquipements().isEmpty()) {
+            Set<Equipement> validatedEquipements = new HashSet<>();
+            for (Equipement equipement : demandeDeTravail.getEquipements()) {
+                Optional<Equipement> equipementOpt = equipementRepo.findById(equipement.getID_Equipement());
+                if (equipementOpt.isPresent()) {
+                    validatedEquipements.add(equipementOpt.get());
+                } else {
+                    throw new RuntimeException("Equipement non trouvé");
+                }
+            }
+            demandeDeTravail.setEquipements(validatedEquipements);
         }
-        return savedDemandeDeTravail;
+        return demandeDeTravailRepo.save(demandeDeTravail);
     }
 
     @Override
@@ -58,7 +70,7 @@ public class DemandeDeTravailService implements IDemandeDeTravailService {
     }
 
     @Override
-    public List<DemandeDeTravail> getDemandeDeTravailByStatus(String status) {
+    public List<DemandeDeTravail> getDemandeDeTravailByStatus(StatusDT status) {
         return demandeDeTravailRepo.findDemandeDeTravailByStatus(status);
     }
 }

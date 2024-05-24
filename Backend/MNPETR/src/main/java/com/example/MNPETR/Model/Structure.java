@@ -15,6 +15,7 @@ import java.util.Set;
 public class Structure {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nom_structure")
     private String Nom_Structure; // Using camelCase for consistency
 

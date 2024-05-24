@@ -15,6 +15,7 @@ import java.util.Date;
 @Table(name = "notification")
 public class Notification {
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

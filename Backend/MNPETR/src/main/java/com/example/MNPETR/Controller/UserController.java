@@ -1,14 +1,29 @@
 package com.example.MNPETR.Controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.MNPETR.Model.User;
+import com.example.MNPETR.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-@RequestMapping("/User")
+@RequestMapping("/api/users")
 public class UserController {
 
+    @Autowired
+    private UserService userService;
 
+    @GetMapping("/authenticate")
+    public ResponseEntity<?> authenticateUser(
+            @RequestParam String username,
+            @RequestParam String password) {
+        User user = userService.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(401).body("Invalid credentials");
+        }
+    }
 }

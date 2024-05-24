@@ -59,13 +59,6 @@ public class PieceController {
 
     @PostMapping("/create")
     public ResponseEntity<Piece> addPiece(@RequestBody Piece piece) {
-        Set<Equipement> equipements = piece.getEquipements().stream()
-                .map(e -> equipementRepo.findById(e.getID_Equipement()).orElse(null))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toSet());
-        piece.setEquipements(equipements);
-        OrdreDeTravail ordreDeTravail = ordreDeTravailRepo.findById(piece.getOrdreDeTravail().getID_OT()).orElse(null);
-        piece.setOrdreDeTravail(ordreDeTravail);
         Piece addedPiece = pieceService.savePiece(piece);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedPiece);
     }

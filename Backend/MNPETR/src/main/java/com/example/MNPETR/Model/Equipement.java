@@ -16,6 +16,7 @@ import java.util.Set;
 public class Equipement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_equipement")
     private int ID_Equipement; // Using camelCase for consistency
 

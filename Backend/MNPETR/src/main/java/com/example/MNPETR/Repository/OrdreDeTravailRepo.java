@@ -1,6 +1,8 @@
 package com.example.MNPETR.Repository;
 
 
+import com.example.MNPETR.Model.Enum.StatusEquipement;
+import com.example.MNPETR.Model.Enum.StatusOT;
 import com.example.MNPETR.Model.OrdreDeTravail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +22,5 @@ public interface OrdreDeTravailRepo extends JpaRepository<OrdreDeTravail, Intege
     List<OrdreDeTravail> findByTypeOtz(String type_ot);
 
     @Query("select ot from OrdreDeTravail ot where ot.statusOT=:status_ot")
-    List<OrdreDeTravail> findOrdreDeTravailByStatus(String status_ot);
+    List<OrdreDeTravail> findOrdreDeTravailByStatus(StatusOT status_ot);
 }

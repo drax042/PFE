@@ -25,12 +25,12 @@ public class EquipementService implements IEquipementService {
     }
 
     @Override
-    public Optional<Equipement> getEquipementById(int ID_Equipement) {
+    public Optional<Equipement> getEquipementById(Integer ID_Equipement) {
         return equipementRepo.findById(ID_Equipement);
     }
 
-    @Override
-    public List<Equipement> getEquipementByStatus(String statusEquipement) {
+
+    public List<Equipement> getEquipementByStatus(StatusEquipement statusEquipement) {
         return equipementRepo.findEquipementByStatus(statusEquipement);
     }
 

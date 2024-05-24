@@ -46,8 +46,4 @@ public class DemandeDeTravail {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @Transient
-    private int equipementId;
-
-
 }

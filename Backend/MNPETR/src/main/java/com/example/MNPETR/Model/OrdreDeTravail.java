@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name = "ordre_de_travail")
 public class OrdreDeTravail {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ot")
     private int ID_OT;
 
