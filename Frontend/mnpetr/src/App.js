@@ -1,5 +1,5 @@
 // App.js
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Menu } from './Components/Menu';
 import { Login } from './Screens/Login';
@@ -13,6 +13,11 @@ import {Dashboard} from "./Screens/Dashboard";
 import {Equipements} from "./Screens/Equipements";
 
 function App() {
+    const [isSidebarVisible, setSidebarVisible] = useState(false);
+
+    const toggleSidebar = () => {
+        setSidebarVisible(!isSidebarVisible);
+    };
     return (
         <Router>
             <div className="app">
@@ -25,11 +30,12 @@ function App() {
                     <Route path="/profile" element={<Profile/>} />
                     <Route path="/dt" element={<DT/>} />
                     <Route path="/stock" element={<Stock/>} />
-                    <Route path="/dashbord" element={<Dashboard/>} />
+                    <Route path="/dashboard" element={<Dashboard/>} />
                     <Route path="/equipements" element={<Equipements/>} />
 
                 </Routes>
             </div>
+
         </Router>
     );
 }

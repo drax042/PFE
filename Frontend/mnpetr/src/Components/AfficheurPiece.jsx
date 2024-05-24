@@ -19,9 +19,9 @@ export const AfficheurPiece = () => {
 
     return (
         <div>
-            <h2 className="text-xl font-bold mb-4">Liste des Pièces</h2>
-            <div className="overflow-x-auto">
-                <table className="table-auto border-collapse w-full">
+            <h2 className="text-xl font-bold mb-4 flex align-middle justify-center ">Liste des Pièces</h2>
+            <div className="overflow-x-auto justify-center align-middle flex">
+                <table className="table-auto border-collapse w-3/5">
                     <thead>
                     <tr>
                         <th className="border px-4 py-2">ID</th>

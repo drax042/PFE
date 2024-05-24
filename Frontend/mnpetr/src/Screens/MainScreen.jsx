@@ -1,8 +1,6 @@
-import {SideBar} from "../Components/SideBar";
+import React, { useState } from "react";
+import { SideBar } from "../Components/SideBar";
 import { Menu } from "../Components/Menu";
-import {useState} from "react";
-
-
 
 export const MainScreen = () => {
     const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -15,7 +13,6 @@ export const MainScreen = () => {
         <div className={`main-container ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
             <Menu toggleSidebar={toggleSidebar} />
             <SideBar isVisible={isSidebarVisible} />
-
         </div>
     );
 };

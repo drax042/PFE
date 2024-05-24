@@ -18,12 +18,19 @@ export const Menu = ({ toggleSidebar }) => {
     return (
         <div className={'Menu-H'}>
             <div className={'divGauche'}>
+                <button onClick={toggleSidebar} className="sidebar-toggle-button">
+                    <img src={"./images/sidebarbutton-logo.svg"} alt="Toggle Sidebar" />
+                </button>
                 <img src={'./images/Sonatrach1.svg'} alt='LOGOSONATRACH' />
                 <h1 className="monoton-regular">MNPETR</h1>
             </div>
             <span className={'divDroite'}>
-                <button onClick={toggleProfileVisibility}> <span> <img src={"./images/profile-logo.svg"} /> </span></button>
-                <button><span className="">  <img src={"./images/logout-logo.svg"}/>  </span></button>
+                <button onClick={toggleProfileVisibility}>
+                    <span><img src={"./images/profile-logo.svg"} alt="Profile" /></span>
+                </button>
+
+                    <span><img src={"./images/signature.svg"} alt="Logout"  className={"energieDuChangement"}/></span>
+
             </span>
 
             {isProfileVisible && (

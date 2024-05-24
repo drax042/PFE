@@ -39,6 +39,10 @@ code {
   margin-right: 5px;
 }
 
+.Menu-H img:hover {
+  color :#ffffff;
+}
+
 .divKbira {
 }
 
@@ -62,9 +66,14 @@ code {
 }
 
 .divDroite {
-  display: inline-block;
+  display: flex;
   justify-content: space-between;
   margin-right: 5px;
+  align-items : center;
+}
+.divDroite span .energieDuChangement{
+  width: 150px;
+  background-color : #ffffff;
 }
 
 .divDroite button {
@@ -72,7 +81,7 @@ code {
   border-color: #969696;
   border-radius: 20px;
   justify-content: space-between;
-  padding: 4px;
+  padding: 0px;
 }
 
 .monoton-regular {
@@ -96,7 +105,7 @@ code {
 }
 
 .DivGauche_Login .image_tuyau{
-  width: 706px;
+  width: 626px;
   
 }
 
@@ -344,62 +353,96 @@ code {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #eee2bc;
+  background-color: #f0f2f5;
+  padding: 20px;
 }
 
 .dt-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
-}
-
-.dt-form label, .dt-form h1 {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  max-width: 90%;
   font-family: "Orbitron", sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  font-style: normal;
-  margin-bottom: 10px;
 }
 
-.dt-form input {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+.dt-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
   margin-bottom: 20px;
   width: 100%;
 }
 
-.dt-form .radio-options {
+.form-group-inline {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  margin-bottom: 20px;
 }
 
-.dt-form .radio-options label {
+.form-group-inline .form-group {
+  width: 48%;
+}
+
+.dt-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.dt-form input,
+.select-input .react-select__control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.select-input .react-select__control {
+  padding: 0;
+}
+
+.radio-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-options label {
   display: flex;
   align-items: center;
+  font-size: 14px;
+  color: #555;
 }
 
-.dt-form .radio-options input[type="radio"] {
-  margin-right: 5px;
+.radio-options input[type="radio"] {
+  margin-right: 8px;
 }
+
 .dt-form button {
-  padding: 10px 20px;
+  width: 100%;
+  padding: 12px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
   font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .dt-form button:hover {
-    background-color: #0056b3;
-  }
+  background-color: #0056b3;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #007bff;
+  text-align: center;
+}

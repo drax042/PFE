@@ -8,7 +8,7 @@ export const SideBarData = [
         {
             titre :"Tableau de bord",
             icone : "./images/dashboard-logo.svg" ,
-            link: "/dashbord"
+            link: "/dashboard"
         },
         {
             titre :"Demandes de travail",

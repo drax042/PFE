@@ -3,14 +3,28 @@ import { AjoutPieceForm } from "../Components/AjoutPieceForm";
 import { AfficheurPiece } from "../Components/AfficheurPiece";
 import { AfficheurComposant } from "../Components/AfficheurComposant";
 import { AjoutComposantForm } from "../Components/AjoutComposantForm";
+import {Menu} from "../Components/Menu";
+import {SideBar} from "../Components/SideBar";
 
 export const Stock = () => {
     const [afficherAjoutPiece, setAfficherAjoutPiece] = useState(false);
     const [afficherComposants, setAfficherComposants] = useState(false);
 
+    const [isSidebarVisible, setSidebarVisible] = useState(false);
+
+    const toggleSidebar = () => {
+        setSidebarVisible(!isSidebarVisible);
+    };
+
     return (
         <div>
-            <AfficheurPiece />
+            <div>
+                <div className={`main-container ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
+                    <Menu toggleSidebar={toggleSidebar}/>
+                    <SideBar isVisible={isSidebarVisible}/>
+                </div>
+            </div>
+            <AfficheurPiece/>
             <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
                 onClick={() => setAfficherAjoutPiece(!afficherAjoutPiece)}
