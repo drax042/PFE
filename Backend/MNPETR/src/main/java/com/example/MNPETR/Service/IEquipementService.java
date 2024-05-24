@@ -10,11 +10,11 @@ import java.util.Optional;
 public interface IEquipementService {
     List<Equipement> getAllEquipements();
 
-    Optional<Equipement> getEquipementById(int ID_Equipement);
-
     Equipement saveEquipement(Equipement equipement);
 
-    List<Equipement> getEquipementByStatus(String statusEquipement);
+    Optional<Equipement> getEquipementById(Integer ID_Equipement);
+
+    List<Equipement> getEquipementByStatus(StatusEquipement statusEquipement);
 
     void deleteEquipement(Equipement equipment);
 

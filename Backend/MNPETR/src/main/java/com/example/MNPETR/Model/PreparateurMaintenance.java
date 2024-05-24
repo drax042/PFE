@@ -11,6 +11,7 @@ import java.util.Set;
 public class PreparateurMaintenance {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_preparateur_maintenance", unique = true, nullable = false)
     private int ID_Preparateur_Maintenance;
 

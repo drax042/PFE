@@ -15,6 +15,7 @@ import java.util.Set;
 public class PosteTechnique {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id_poste_technique")
     private  int ID_Poste_Technique ;
 

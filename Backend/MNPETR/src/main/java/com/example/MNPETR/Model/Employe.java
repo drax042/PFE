@@ -14,6 +14,7 @@ import java.util.Set;
 @Table (name = "employe")
 public class Employe {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id_employe", unique = true, nullable = false)
     private int ID_Employe;
 
@@ -37,7 +38,7 @@ public class Employe {
     private Structure structure;
 
     @ManyToOne
-    @JoinColumn(name = "id_responsabele")
+    @JoinColumn(name = "id_responsable")
     private Responsable responsable;
 
     @OneToOne

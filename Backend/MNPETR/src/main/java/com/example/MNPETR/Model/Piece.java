@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name = "piece")
 public class Piece {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="id_piece")
     private int Id ;
 
@@ -31,19 +32,16 @@ public class Piece {
     private int Quantite_Piece ;
 
     @ManyToOne
-    @JoinColumn(name="id_magasinier") //cbon
+    @JoinColumn(name = "id_magasinier", nullable = true) // Set to nullable
     private Magasinier magasinier;
 
     @ManyToMany
-    @JoinTable(name ="piece_equipement",
-    joinColumns = @JoinColumn (name ="id_piece"),
-    inverseJoinColumns = @JoinColumn (name = "id_equipement"))//cbon
-    private Set<Equipement> equipements ;
+    @JoinTable(name = "piece_equipement",
+            joinColumns = @JoinColumn(name = "id_piece"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipement"))
+    private Set<Equipement> equipements;
 
-    @ManyToMany(mappedBy = "pieces")//cbon
+    @ManyToMany(mappedBy = "pieces")
     private Set<Composant> composants;
 
-    @ManyToOne
-    @JoinColumn(name = "id_ot")//cbon
-    private OrdreDeTravail ordreDeTravail;
 }

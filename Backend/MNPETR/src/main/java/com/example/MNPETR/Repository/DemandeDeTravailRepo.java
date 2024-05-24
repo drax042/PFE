@@ -1,6 +1,7 @@
 package com.example.MNPETR.Repository;
 
 import com.example.MNPETR.Model.DemandeDeTravail;
+import com.example.MNPETR.Model.Enum.StatusDT;
 import com.example.MNPETR.Model.OrdreDeTravail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +18,7 @@ public interface DemandeDeTravailRepo extends JpaRepository<DemandeDeTravail ,In
         List<DemandeDeTravail> findDemandeDeTravailByDate_DT(Date date_dt);
 
         @Query("select dt from DemandeDeTravail dt where dt.statusDT=:status_dt")
-        List<DemandeDeTravail> findDemandeDeTravailByStatus(String status_dt);
+        List<DemandeDeTravail> findDemandeDeTravailByStatus(StatusDT status_dt);
 
 
 }

@@ -12,6 +12,7 @@ import java.util.Set;
 public class Composant {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_composant")
     private int ID_Composant;
 

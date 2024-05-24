@@ -1,5 +1,6 @@
 package com.example.MNPETR.Repository;
 
+import com.example.MNPETR.Model.Enum.StatusEquipement;
 import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Model.OrdreDeTravail;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,6 @@ public interface EquipementRepo extends JpaRepository<Equipement, Integer> {
 
 
     @Query("select equipement from Equipement equipement where equipement.statusEquipement=:status_equipement")
-    List<Equipement> findEquipementByStatus(String status_equipement);
+    List<Equipement> findEquipementByStatus(StatusEquipement status_equipement);
 
 }

@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name = "responsable")
 public class Responsable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_responsable", unique = true, nullable = false)
     private int ID_Responsable;
 

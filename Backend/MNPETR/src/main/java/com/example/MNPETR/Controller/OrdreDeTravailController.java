@@ -2,8 +2,10 @@ package com.example.MNPETR.Controller;
 
 import com.example.MNPETR.Model.Enum.StatusEquipement;
 import com.example.MNPETR.Model.Enum.StatusOT;
+import com.example.MNPETR.Model.Equipement;
 import com.example.MNPETR.Model.OrdreDeTravail;
 import com.example.MNPETR.Model.Piece;
+import com.example.MNPETR.Repository.EquipementRepo;
 import com.example.MNPETR.Service.EquipementService;
 import com.example.MNPETR.Service.OrdreDeTravailService;
 import com.example.MNPETR.Service.PieceService;
@@ -14,9 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -31,21 +32,28 @@ public class OrdreDeTravailController {
     @Autowired
     private EquipementService equipementService;
 
+    @Autowired
+    private EquipementRepo  equipementRepo;
+
     @GetMapping
     public List<OrdreDeTravail> getAllOrdreDeTravail() {
         return ordreDeTravailService.getAllOrdreDeTravail();
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<OrdreDeTravail> getOrdreDeTravailById(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<OrdreDeTravail> getOrdreDeTravailById(@PathVariable Integer id) {
         Optional<OrdreDeTravail> ordreDeTravail = ordreDeTravailService.getOrdreDeTravailById(id);
-        return ordreDeTravail.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        if (ordreDeTravail.isPresent()) {
+            return ResponseEntity.ok(ordreDeTravail.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
     }
 
     @GetMapping("/date")
-    public ResponseEntity<List<OrdreDeTravail>> getOrdreDeTravailByDate(@PathVariable String date_ot) throws ParseException {
-        SimpleDateFormat formateur = new SimpleDateFormat("dd/MM/yyyy");
+    public ResponseEntity<List<OrdreDeTravail>> getOrdreDeTravailByDate(@RequestParam String date_ot) throws ParseException {
+        SimpleDateFormat formateur = new SimpleDateFormat("DD/MM/YYYY");
         Date date = formateur.parse(date_ot);
         List<OrdreDeTravail> ordreDeTravail = ordreDeTravailService.getOrdreDeTravailByDate(date);
         if (!ordreDeTravail.isEmpty()) {
@@ -56,38 +64,50 @@ public class OrdreDeTravailController {
     }
 
     @GetMapping("/status")
-    public ResponseEntity<List<OrdreDeTravail>> getOrdreDeTravailByStatus(@PathVariable String status) {
+    public ResponseEntity<List<OrdreDeTravail>> getOrdreDeTravailByStatus(@RequestParam StatusOT status) {
         List<OrdreDeTravail> ordreDeTravail = ordreDeTravailService.getOrdreDeTravailByStatus(status);
-            if (!ordreDeTravail.isEmpty()) {
-                return ResponseEntity.ok(ordreDeTravail);
-            }else {
-                return ResponseEntity.notFound().build();
+        if (ordreDeTravail != null && !ordreDeTravail.isEmpty()) {
+            return ResponseEntity.ok(ordreDeTravail);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
     public ResponseEntity<OrdreDeTravail> addOrdreDeTravail(@RequestBody OrdreDeTravail ordreDeTravail) {
-        int pieceID= ordreDeTravail.getPieceID();
-        int quantityNeeded= ordreDeTravail.getQuantityNeeded();
-        Optional<Piece> optionalPiece = pieceService.getPieceById(pieceID);
-        if (optionalPiece.isPresent()) {
-            Piece piece = optionalPiece.get();
-            int currentQuantity = piece.getQuantite_Piece();
-            if (currentQuantity >= quantityNeeded) {
-                piece.setQuantite_Piece(currentQuantity - quantityNeeded);
-                pieceService.savePiece(piece);
-                OrdreDeTravail savedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
-                return ResponseEntity.status(HttpStatus.CREATED).body(savedOrdreDeTravail);
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        try {
+            Optional<Piece> optionalPiece = pieceService.getPieceById(ordreDeTravail.getPieceID());
+            if (!optionalPiece.isPresent()) {
+                throw new RuntimeException("Pièce non trouvée.");
             }
-        } else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            Piece piece = optionalPiece.get();
+
+            int currentQuantity = piece.getQuantite_Piece();
+            if (currentQuantity < ordreDeTravail.getQuantityNeeded()) {
+                throw new RuntimeException("La quantité de la pièce est insuffisante.");
+            }
+
+            piece.setQuantite_Piece(currentQuantity - ordreDeTravail.getQuantityNeeded());
+            pieceService.savePiece(piece);
+
+            Set<Equipement> equipements = ordreDeTravail.getEquipements().stream()
+                    .map(equipement -> {
+                        Optional<Equipement> equipementOpt = equipementService.getEquipementById(equipement.getID_Equipement());
+                        return equipementOpt.orElse(null);
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet());
+
+            OrdreDeTravail savedOrdreDeTravail = ordreDeTravailService.saveOrdreDeTravail(ordreDeTravail);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedOrdreDeTravail);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<OrdreDeTravail> updateOrdreDeTravailStatus(@PathVariable int id, @RequestParam StatusOT newStatusOT) {
+    public ResponseEntity<OrdreDeTravail> updateOrdreDeTravailStatus(@RequestParam int id, @RequestParam StatusOT newStatusOT) {
         Optional<OrdreDeTravail> optionalOrdreDeTravail = ordreDeTravailService.getOrdreDeTravailById(id);
         if (optionalOrdreDeTravail.isPresent()) {
             OrdreDeTravail ordreDeTravail = optionalOrdreDeTravail.get();

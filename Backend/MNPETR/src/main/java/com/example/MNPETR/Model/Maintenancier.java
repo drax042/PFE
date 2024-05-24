@@ -13,6 +13,7 @@ import java.util.Set;
 public class Maintenancier {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_maintenancier", unique = true, nullable = false) // Assuming there's a primary key
     private int ID_Maintenancier;
 
